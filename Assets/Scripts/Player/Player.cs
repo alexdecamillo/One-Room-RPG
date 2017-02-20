@@ -16,7 +16,7 @@ public class Player : LivingEntity {
 	public event System.Action PointChange;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		base.Start();
 		controller = GetComponent<PlayerController>();
 		viewCamera = Camera.main;

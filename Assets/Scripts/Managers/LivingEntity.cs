@@ -27,10 +27,6 @@ public class LivingEntity : MonoBehaviour, iDamagable {
 		}
 	}
 
-	public void TakeHit(float damage) {
-		TakeDamage(damage);
-	}
-
 	[ContextMenu("Self Destuct")]
 	protected void Die() {
 		dead = true;

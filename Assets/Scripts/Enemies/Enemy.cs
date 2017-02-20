@@ -9,9 +9,9 @@ public class Enemy : LivingEntity {
 	float updateTime = .1f;
 	Transform target;
 
-	void Start(){
+	public virtual void Start(){
+		base.Start ();
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
-
 	}
 
 	void Update(){
