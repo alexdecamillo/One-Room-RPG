@@ -5,6 +5,7 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, iDamagable {
 
 	public float startingHealth;
+	public int value;
 
 	protected float health;
 	protected bool dead;
@@ -19,11 +20,14 @@ public class LivingEntity : MonoBehaviour, iDamagable {
 	public void TakeDamage(float damage) {
 		health -= damage;
 		if (gameObject.name == "Player") {
-				TookDamage();
+			if (TookDamage != null) {
+				TookDamage ();
+			}
 		}
 
 		if (health <= 0 && !dead) {
 			Die();
+			FindObjectOfType<Player> ().AddPoints (value);
 		}
 	}
 

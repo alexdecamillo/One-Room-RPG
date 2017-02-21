@@ -14,7 +14,6 @@ public class SpawnManager : MonoBehaviour {
 	int round;
 	int totalRounds = 25;
 	int walkEnemies = 3;
-	int sprintEnemies = 2;
 
 	Round[] walk;
 
