@@ -6,6 +6,7 @@ public class Player : LivingEntity {
 
 	public float moveSpeed;
 	public bool paused;
+	
 
 	int points = 0;
 
