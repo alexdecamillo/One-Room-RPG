@@ -19,6 +19,7 @@ public class SpawnManager : MonoBehaviour {
 
 	bool roundComplete;
 	bool waveSet;
+	public bool dayCycle = true;
 
 	public void Start() {
 		walk = InitializeArray<Round>(totalRounds);
@@ -27,88 +28,91 @@ public class SpawnManager : MonoBehaviour {
 	}
 
 	void Update() {
-		if (waveSet) {
-			roundComplete = false;
-			waveSet = false;
-		}
+			if (waveSet) {
+				roundComplete = false;
+				waveSet = false;
+			}
 	}
 
 	// sets enemies for each wave and waves for each round
 	void SetRounds(Round[] round) {
-		for (int i = 0; i < totalRounds; i++) {
+			for (int i = 0; i < totalRounds; i++) {
 
-			float modifier = (i+1) * roundMulitplier;
+				float modifier = (i + 1) * roundMulitplier;
 
-			// sets number of waves per round
-			// waves increase throughout game
-			//
-			// round        waves
-			// 1            1
-			// 2-3          2
-			// 4-7          3
-			// 8-12         4
-			// 12+          5
-			// POSSIBLY ADD MORE WAVES FOR HIGHER ROUNDS
-			// WILL REVISIT DURING BALANCING
+				// sets number of waves per round
+				// waves increase throughout game
+				//
+				// round        waves
+				// 1            1
+				// 2-3          2
+				// 4-7          3
+				// 8-12         4
+				// 12+          5
+				// POSSIBLY ADD MORE WAVES FOR HIGHER ROUNDS
+				// WILL REVISIT DURING BALANCING
 
-			if (i == 0) {
-				round[i].numWaves = 1;
-			}
-			else if (i >= 1 && i <= 2) {
-				round[i].numWaves = 2;
-			}
-			else if (i >= 3 && i <= 6) {
-				round[i].numWaves = 3;
-			}
-			else if (i >= 7 && i <= 11) {
-				round[i].numWaves = 4;
-			}
-			else {
-				round[i].numWaves = 5;
-			}
+				if (i == 0) {
+					round [i].numWaves = 1;
+				} else if (i >= 1 && i <= 2) {
+					round [i].numWaves = 2;
+				} else if (i >= 3 && i <= 6) {
+					round [i].numWaves = 3;
+				} else if (i >= 7 && i <= 11) {
+					round [i].numWaves = 4;
+				} else {
+					round [i].numWaves = 5;
+				}
 
-			round[i]._waves = InitializeArray<Spawner.Wave>(round[i].numWaves);
+				round [i]._waves = InitializeArray<Spawner.Wave> (round [i].numWaves);
 
-			// sets the number of enemies and time between spawns for each wave
-			for (int j = 0; j < round[i].numWaves; j++) {
+				// sets the number of enemies and time between spawns for each wave
+				for (int j = 0; j < round [i].numWaves; j++) {
 
-				modifier += (j+1) * waveMulitplier;
-				switch (j) {
+					modifier += (j + 1) * waveMulitplier;
+					switch (j) {
 
-				case 0:
-					if (round.Equals(walk)) round[i]._waves[j].enemyCount = (int)Mathf.Ceil(walkEnemies * modifier);
-					round[i]._waves[j].timeBetweenSpawns = 4;
-					break;
+					case 0:
+						if (round.Equals (walk))
+							round [i]._waves [j].enemyCount = (int)Mathf.Ceil (walkEnemies * modifier);
+						round [i]._waves [j].timeBetweenSpawns = 4;
+						break;
 
-				case 1:
-					if (round.Equals(walk)) round[i]._waves[j].enemyCount = (int)Mathf.Ceil(walkEnemies * modifier);
-					round[i]._waves[j].timeBetweenSpawns = 2;
-					break;
+					case 1:
+						if (round.Equals (walk))
+							round [i]._waves [j].enemyCount = (int)Mathf.Ceil (walkEnemies * modifier);
+						round [i]._waves [j].timeBetweenSpawns = 2;
+						break;
 
-				case 2:
-					if (round.Equals(walk)) round[i]._waves[j].enemyCount = (int)Mathf.Ceil(walkEnemies * modifier);
-					round[i]._waves[j].timeBetweenSpawns = 2;
-					break;
+					case 2:
+						if (round.Equals (walk))
+							round [i]._waves [j].enemyCount = (int)Mathf.Ceil (walkEnemies * modifier);
+						round [i]._waves [j].timeBetweenSpawns = 2;
+						break;
 
-				case 3:
-					if (round.Equals(walk)) round[i]._waves[j].enemyCount = (int)Mathf.Ceil(walkEnemies * modifier);
-					round[i]._waves[j].timeBetweenSpawns = 1;
-					break;
+					case 3:
+						if (round.Equals (walk))
+							round [i]._waves [j].enemyCount = (int)Mathf.Ceil (walkEnemies * modifier);
+						round [i]._waves [j].timeBetweenSpawns = 1;
+						break;
 
-				default:
-					if (round.Equals(walk)) round[i]._waves[j].enemyCount = (int)Mathf.Ceil(walkEnemies * modifier);
-					round[i]._waves[j].timeBetweenSpawns = .5f;
-					break;
+					default:
+						if (round.Equals (walk))
+							round [i]._waves [j].enemyCount = (int)Mathf.Ceil (walkEnemies * modifier);
+						round [i]._waves [j].timeBetweenSpawns = .5f;
+						break;
+					}
 				}
 			}
 		}
-	}
+
 
 	public void RoundEnd() {
 		Debug.Log("RoundEnd function");
 		Debug.Log("RoundComplete function");
 		round++;
 		roundComplete = true;
+		dayCycle = true;
 		if(RoundChange != null) RoundChange();
 	}
 

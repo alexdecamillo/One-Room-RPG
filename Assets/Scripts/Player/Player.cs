@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerController))]
@@ -9,17 +10,18 @@ public class Player : LivingEntity {
 	bool attacking = false;
 	public float swingTimer;
 	public float swingCD;
+	public Text activeBed;
 
 	public float moveSpeed;
 	public bool paused;
-	
-
+	bool crossBoundary = false;
 	int points = 0;
 	int direction;
 
 	PlayerController controller;
 	Camera viewCamera;
 	Animator anim;
+	SpawnManager spawner;
 
 	public event System.Action OnPause;
 	public event System.Action PointChange;
@@ -30,6 +32,7 @@ public class Player : LivingEntity {
 		controller = GetComponent<PlayerController>();
 		viewCamera = Camera.main;
 		anim = GetComponent<Animator> ();
+		spawner = FindObjectOfType<SpawnManager>();
 	}
 	
 	// Update is called once per frame
@@ -64,6 +67,12 @@ public class Player : LivingEntity {
 				else {
 					attacking = false;
 				}
+			}
+
+			if (crossBoundary == true && Input.GetKeyDown (KeyCode.E)) {
+				Debug.Log ("E pressed");
+				spawner.dayCycle = false;
+
 			}
 
 			// handle animations
@@ -104,5 +113,19 @@ public class Player : LivingEntity {
 
 	public int GetPoints() {
 		return points;
+	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.tag == "Bed" && spawner.dayCycle == true) {
+			activeBed.text = ("Press E to go to sleep");
+			crossBoundary = true;
+		}
+	}
+
+	void OnTriggerExit(Collider col) {
+		if (col.tag == "Bed") {
+			activeBed.text = ("");
+			crossBoundary = false;
+		}
 	}
 }

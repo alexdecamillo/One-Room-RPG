@@ -6,8 +6,9 @@ public class LivingEntity : MonoBehaviour, iDamagable {
 
 	public float startingHealth;
 	public int value;
+	Player player;
 
-	protected float health;
+	public float health {get; protected set;}
 	protected bool dead;
 
 	public event System.Action OnDeath;
@@ -15,11 +16,12 @@ public class LivingEntity : MonoBehaviour, iDamagable {
 
 	protected virtual void Start() {
 		health = startingHealth;
+		player = FindObjectOfType<Player> ();
 	}
 
 	public void TakeDamage(float damage) {
 		health -= damage;
-		if (gameObject.name == "Player") {
+		if (gameObject.name == "Player" && player !=null) {
 			if (TookDamage != null) {
 				TookDamage ();
 			}
