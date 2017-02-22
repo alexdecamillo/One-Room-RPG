@@ -11,7 +11,6 @@ public class Player : LivingEntity {
 	public float swingTimer;
 	public float swingCD;
 	public Text activeBed;
-	public Slider healthBar;
 
 	public float moveSpeed;
 	public bool paused;
@@ -117,7 +116,7 @@ public class Player : LivingEntity {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (col.tag == "Bed") {
+		if (col.tag == "Bed" && spawner.dayCycle == true) {
 			activeBed.text = ("Press E to go to sleep");
 			crossBoundary = true;
 		}
@@ -130,4 +129,3 @@ public class Player : LivingEntity {
 		}
 	}
 }
-//healthBar.value = targetEntity.health;
