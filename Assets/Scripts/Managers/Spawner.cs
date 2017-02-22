@@ -4,11 +4,13 @@ using System.Collections;
 public class Spawner : MonoBehaviour {
 
 	SpawnManager manager;
+	SpawnManager spawner;
 
 	Wave[] waves;
 
 	public Enemy spawn;
 	public Transform[] spawners;
+	public bool dayCycle = true;
 
 	Transform spawnPoint;
 
@@ -25,7 +27,8 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void Start() {
-
+		
+		spawner = FindObjectOfType<SpawnManager>();
 		manager = GetComponentInParent<SpawnManager>();
 		manager.Start();
 
@@ -68,17 +71,19 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void NextWave() {
-		if (currentWaveNumber < waves.Length) {
-			currentWave = waves[currentWaveNumber];
 
-			enemiesRemainingToSpawn = currentWave.enemyCount;
-			enemiesRemainingAlive = enemiesRemainingToSpawn;
-			currentWave.delay += Time.time;
+		if (spawner.dayCycle == false) {
+			if (currentWaveNumber < waves.Length) {
+				currentWave = waves [currentWaveNumber];
 
-			Debug.Log("Round: " + manager.GetRoundNum() + "Wave: " + (currentWaveNumber + 1) + ". Enemies: " + enemiesRemainingToSpawn);
+				enemiesRemainingToSpawn = currentWave.enemyCount;
+				enemiesRemainingAlive = enemiesRemainingToSpawn;
+				currentWave.delay += Time.time;
+
+				Debug.Log ("Round: " + manager.GetRoundNum () + "Wave: " + (currentWaveNumber + 1) + ". Enemies: " + enemiesRemainingToSpawn);
+			}
+			currentWaveNumber++;
 		}
-		currentWaveNumber++;
-
 	}
 
 	void FindSpawnPoint() {
