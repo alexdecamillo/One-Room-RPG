@@ -19,9 +19,11 @@ public class Player : LivingEntity {
 	int direction;
 
 	PlayerController controller;
+	Player player;
 	Camera viewCamera;
 	Animator anim;
 	SpawnManager spawner;
+	public Light dayLight;
 
 	public event System.Action OnPause;
 	public event System.Action PointChange;
@@ -30,9 +32,11 @@ public class Player : LivingEntity {
 	public virtual void Start () {
 		base.Start();
 		controller = GetComponent<PlayerController>();
+		player = FindObjectOfType<Player>();
 		viewCamera = Camera.main;
 		anim = GetComponent<Animator> ();
 		spawner = FindObjectOfType<SpawnManager>();
+		dayLight = FindObjectOfType<Light>();
 	}
 	
 	// Update is called once per frame
@@ -72,6 +76,7 @@ public class Player : LivingEntity {
 			if (crossBoundary == true && Input.GetKeyDown (KeyCode.E)) {
 				Debug.Log ("E pressed");
 				spawner.dayCycle = false;
+				dayLight.enabled = false;
 
 			}
 
@@ -120,12 +125,20 @@ public class Player : LivingEntity {
 			activeBed.text = ("Press E to go to sleep");
 			crossBoundary = true;
 		}
+		if (col.tag == "Shop" && spawner.dayCycle == true) {
+			activeBed.text = ("Press E to shop");
+			//crossBoundary = true;
+		}
 	}
 
 	void OnTriggerExit(Collider col) {
 		if (col.tag == "Bed") {
 			activeBed.text = ("");
 			crossBoundary = false;
+		}
+		if (col.tag == "Shop") {
+			activeBed.text = ("");
+			//crossBoundary = false;
 		}
 	}
 }

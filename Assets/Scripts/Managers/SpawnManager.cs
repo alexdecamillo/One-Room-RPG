@@ -16,6 +16,7 @@ public class SpawnManager : MonoBehaviour {
 	int walkEnemies = 3;
 
 	Round[] walk;
+	Player player;
 
 	bool roundComplete;
 	bool waveSet;
@@ -23,6 +24,7 @@ public class SpawnManager : MonoBehaviour {
 
 	public void Start() {
 		walk = InitializeArray<Round>(totalRounds);
+		player = FindObjectOfType<Player>();
 		SetRounds(walk);
 		round = startingRound;
 	}
@@ -113,6 +115,7 @@ public class SpawnManager : MonoBehaviour {
 		round++;
 		roundComplete = true;
 		dayCycle = true;
+		player.dayLight.enabled = true;
 		if(RoundChange != null) RoundChange();
 	}
 
