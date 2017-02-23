@@ -15,7 +15,7 @@ public class Player : LivingEntity {
 	public float moveSpeed;
 	public bool paused;
 	bool crossBoundary = false;
-	int points = 0;
+	public int points = 0;
 	int direction = 0;
 
 	Sword sword;
