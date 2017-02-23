@@ -24,7 +24,10 @@ public class Player : LivingEntity {
 	Camera viewCamera;
 	Animator anim;
 	SpawnManager spawner;
+
 	public Light dayLight;
+	public GameObject plane;
+	public GameObject cycle;
 
 	public event System.Action OnPause;
 	public event System.Action PointChange;
@@ -32,6 +35,7 @@ public class Player : LivingEntity {
 	// Use this for initialization
 	public virtual void Start () {
 		base.Start();
+		cycle.SetActive (false);
 		controller = GetComponent<PlayerController>();
 		viewCamera = Camera.main;
 		anim = GetComponent<Animator> ();
@@ -79,8 +83,9 @@ public class Player : LivingEntity {
 			if (crossBoundary == true && Input.GetKeyDown (KeyCode.E)) {
 				Debug.Log ("E pressed");
 				spawner.dayCycle = false;
-				dayLight.enabled = false;
-
+				cycle.SetActive (true);
+				//dayLight.enabled = true;
+				//plane.SetActive (true);
 			}
 
 			// handle animations
@@ -98,7 +103,7 @@ public class Player : LivingEntity {
 			anim.SetFloat ("speed", moveInput.magnitude);
 			anim.SetInteger ("direction", direction);
 			anim.SetBool ("attacking", sword.attacking);
-			sword.transform.localPosition.Set (0, 0, 0);
+
 			/*
 			if (direction == 0){
 				sword.transform.position.Set (0,-.7f,0);
