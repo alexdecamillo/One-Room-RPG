@@ -19,6 +19,8 @@ public class LayBombs : MonoBehaviour
 	public float swingTimer;
 	public float swingCD;
 
+	private GameObject instantiatedObj;
+
 	SphereCollider hitBox;
 	Vector3 velocity;
 	Transform target;
@@ -63,7 +65,7 @@ public class LayBombs : MonoBehaviour
 			//AudioSource.PlayClipAtPoint(bombsAway,transform.position);
 
 			// Instantiate the bomb prefab.
-			Instantiate(bomb, target.transform.position, target.transform.rotation);
+			instantiatedObj = Instantiate(bomb, target.transform.position, target.transform.rotation);
 
 			bombTimer = 5.0f;
 			bombLaid = true;
@@ -78,6 +80,7 @@ public class LayBombs : MonoBehaviour
 			if (explodeBomb <= 0) {
 				BombExplosion ();
 				bombLaid = false;
+				Destroy(instantiatedObj, float.MinValue);
 			}
 
 
@@ -88,20 +91,20 @@ public class LayBombs : MonoBehaviour
 	
 
 		// The bomb heads up display should be enabled if the player has bombs, other it should be disabled.
-		bombHUD.text = bombCount + ("Bombs");
+		bombHUD.text = bombCount + (" Bombs");
 	}
 
 	void BombExplosion()
 	{
-			attacking = true;
-			hitBox.transform.position = bomb.transform.position;
 			hitBox.enabled = true;
+			Debug.Log("Entered Function");
 	}
 		
 	void OnTriggerEnter(Collider col) {
 		if (col.tag == "Enemy") {
 			col.SendMessage("TakeDamage", damage);
 			givingBombDamage = true;
+			Debug.Log("Enemy Took Damage");
 		}
 	}
 }

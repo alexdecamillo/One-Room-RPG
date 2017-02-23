@@ -35,11 +35,11 @@ public class Enemy : LivingEntity {
 		if (player != null) {
 			MoveToPlayer ();
 		}
-		if (sword.givingDamage)
+/*		if (sword.givingDamage)
 		{
 			StartCoroutine (Knockback(0.02f, 5 ));
 			
-		}
+		}*/
 	}
 
 	void MoveToPlayer(){

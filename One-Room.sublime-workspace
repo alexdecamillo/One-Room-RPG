@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"bom",
+				"bombCount\tint"
+			],
+			[
+				"po",
+				"points\tint"
+			],
+			[
+				"m",
+				"MinValue\tfloat"
+			],
+			[
+				"b",
+				"bomb\tGameObject"
+			],
+			[
 				"Fin",
 				"FindObjectOfType<T>()\tT"
 			],
@@ -80,30 +96,21 @@
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/Player/PlayerController.cs",
+			"file": "Assets/Scripts/LayBombs.cs",
 			"settings":
 			{
-				"buffer_size": 622,
+				"buffer_size": 2591,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Sword.cs",
+			"file": "Assets/Scripts/WeaponButton.cs",
 			"settings":
 			{
-				"buffer_size": 988,
+				"buffer_size": 635,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Enemies/Enemy.cs",
-			"settings":
-			{
-				"buffer_size": 2721,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -123,19 +130,15 @@
 			"settings":
 			{
 				"buffer_size": 2424,
-				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "using System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.UI;\n\n[RequireComponent(typeof(Animator))]\n[RequireComponent(typeof(PlayerController))]\npublic class Player : LivingEntity {\n\n\tbool attacking = false;\n\tpublic float swingTimer;\n\tpublic float swingCD;\n\tpublic Text activeBed;\n\n\tpublic float moveSpeed;\n\tpublic bool paused;\n\tbool crossBoundary = false;\n\tint points = 0;\n\tint direction;\n\n\tPlayerController controller;\n\tCamera viewCamera;\n\tAnimator anim;\n\tSpawnManager spawner;\n\tpublic Light dayLight;\n\n\tpublic event System.Action OnPause;\n\tpublic event System.Action PointChange;\n\n\t// Use this for initialization\n\tpublic virtual void Start () {\n\t\tbase.Start();\n\t\tcontroller = GetComponent<PlayerController>();\n\t\tviewCamera = Camera.main;\n\t\tanim = GetComponent<Animator> ();\n\t\tspawner = FindObjectOfType<SpawnManager>();\n\t\tdayLight = FindObjectOfType<Light>();\n\t}\n\t\n\t// Update is called once per frame\n\tvoid Update () {\n\t\t\n\t\tif (!paused) {\n\t\t\t// Movement input\n\t\t\tVector3 moveInput = new Vector3 (Input.GetAxisRaw (\"Horizontal\"), 0, Input.GetAxisRaw (\"Vertical\"));\n\t\t\tVector3 moveVeloctiy = moveInput.normalized * moveSpeed;\n\t\t\tcontroller.Move (moveVeloctiy);\n\t\t\t\n\t\t\t// Look input\n\t\t\tRay ray = viewCamera.ScreenPointToRay (Input.mousePosition);\n\t\t\tPlane groundPlane = new Plane (Vector3.up, Vector3.zero);\n\t\t\tfloat rayDistance;\n\t\t\t\n\t\t\tif (groundPlane.Raycast (ray, out rayDistance)) {\n\t\t\t\tVector3 point = ray.GetPoint (rayDistance);\n\t\t\t\t//Debug.DrawLine(ray.origin, point, Color.red);\n\t\t\t\t//controller.LookAt (point);\n\t\t\t}\n\n\t\t\tif (Input.GetButtonDown(\"Fire1\") && !attacking) {\n\t\t\t\tattacking = true;\n\t\t\t\tswingTimer = swingCD;\n\t\t\t}\n\n\t\t\tif (attacking) {\n\t\t\t\tif (swingTimer > 0) {\n\t\t\t\t\tswingTimer -= Time.deltaTime;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\tattacking = false;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tif (crossBoundary == true && Input.GetKeyDown (KeyCode.E)) {\n\t\t\t\tDebug.Log (\"E pressed\");\n\t\t\t\tspawner.dayCycle = false;\n\t\t\t\tdayLight.enabled = false;\n\n\t\t\t}\n\n\t\t\t// handle animations\n\t\t\tif (moveInput.z < 0)\n\t\t\t\tdirection = 0;\n\t\t\telse if (moveInput.z > 0)\n\t\t\t\tdirection = 1;\n\n\t\t\tif (moveInput.x < 0)\n\t\t\t\tdirection = 2;\n\t\t\telse if (moveInput.x > 0)\n\t\t\t\tdirection = 3;\n\n\t\t\tanim.SetFloat (\"speed\", moveInput.magnitude);\n\t\t\tanim.SetInteger (\"direction\", direction);\n\t\t\tanim.SetBool (\"attacking\", attacking);\n\t\t} \n\n\t\t// pause controller\n\t\tif (Input.GetKeyDown(KeyCode.Escape)) {\n\t\t\tpaused = !paused;\n\t\t\tif (OnPause != null) {\n\t\t\t\tOnPause();\n\t\t\t}\n\t\t}\n\n\t}\n\n\tpublic void AddPoints(int points) {\n\t\tthis.points += points;\n\t\tPointChange();\n\t}\n\n\tpublic void RemovePoints(int points) {\n\t\tthis.points -= points;\n\t\tPointChange();\n\t}\n\n\tpublic int GetPoints() {\n\t\treturn points;\n\t}\n\n\tvoid OnTriggerEnter(Collider col) {\n\t\tif (col.tag == \"Bed\" && spawner.dayCycle == true) {\n\t\t\tactiveBed.text = (\"Press E to go to sleep\");\n\t\t\tcrossBoundary = true;\n\t\t}\n\t\tif (col.tag == \"Shop\" && spawner.dayCycle == true) {\n\t\t\tactiveBed.text = (\"Press E to shop\");\n\t\t\t//crossBoundary = true;\n\t\t}\n\t}\n\n\tvoid OnTriggerExit(Collider col) {\n\t\tif (col.tag == \"Bed\") {\n\t\t\tactiveBed.text = (\"\");\n\t\t\tcrossBoundary = false;\n\t\t}\n\t\tif (col.tag == \"Shop\") {\n\t\t\tactiveBed.text = (\"\");\n\t\t\t//crossBoundary = false;\n\t\t}\n\t}\n}",
 			"file": "Assets/Scripts/Player/Player.cs",
-			"file_size": 3236,
-			"file_write_time": 131322425184306311,
 			"settings":
 			{
-				"buffer_size": 3178,
-				"encoding": "UTF-8 with BOM",
+				"buffer_size": 3185,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -192,6 +195,10 @@
 	],
 	"file_history":
 	[
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Enemies/Enemy.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/LivingEntity.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Sword.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Player/PlayerController.cs",
 		"/F/Unity Projects/One-Room-RPG/One-Room.sublime-project",
 		"/F/Unity Projects/2D-Platformer/2D Platforming Game/Assets/Scripts/LivingEntity.cs",
 		"/F/Unity Projects/2D-Platformer/2D Platforming Game/Assets/Scripts/GameUI.cs",
@@ -236,124 +243,106 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/Player/PlayerController.cs",
+					"file": "Assets/Scripts/LayBombs.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 622,
+						"buffer_size": 2591,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								78,
-								78
+								2309,
+								2309
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"0,5": "Using directive is not used by code and can be removed safely.",
-								"26,31": "Using directive is not used by code and can be removed safely.",
-								"405,414": "no known errors.",
-								"489,496": "Use 'var' keyword"
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Sword.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 988,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								831,
-								831
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"0,5": "Using directive is not used by code and can be removed safely.",
-								"136,141": "Initializing field by default value is redundant",
-								"156,168": "Name should have prefix '_'. (Rule 'Fields').",
-								"171,176": "Initializing field by default value is redundant",
-								"212,218": "Name should have prefix '_'. (Rule 'Fields').",
-								"235,245": "Name should have prefix '_'. (Rule 'Fields').",
-								"26,31": "Using directive is not used by code and can be removed safely.",
-								"261,268": "Name should have prefix '_'. (Rule 'Fields').",
-								"867,875": "Parameter can be declared with base type"
+								"1269,1271": "Convert to '&=' expresssion",
+								"1319,1321": "Convert to '|=' expresssion",
+								"1398,1399": "Comparison with 'false' is redundant",
+								"140,148": "Name should have prefix '_'. (Rule 'Fields').",
+								"151,156": "Initializing field by default value is redundant",
+								"1612,1613": "Comparison with 'true' is redundant",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"1993,1994": "Comparison with 'true' is redundant",
+								"226,235": "Name should have prefix '_'. (Rule 'Fields').",
+								"238,239": "Initializing field by default value is redundant",
+								"2434,2442": "Parameter can be declared with base type",
+								"383,387": "Name should have prefix '_'. (Rule 'Fields').",
+								"438,447": "Name should have prefix '_'. (Rule 'Fields').",
+								"450,451": "Initializing field by default value is redundant",
+								"506,517": "Name should have prefix '_'. (Rule 'Fields').",
+								"520,521": "Initializing field by default value is redundant",
+								"539,548": "Name should have prefix '_'. (Rule 'Fields').",
+								"563,572": "Convert to constant",
+								"575,580": "Initializing field by default value is redundant",
+								"595,611": "Name should have prefix '_'. (Rule 'Fields').",
+								"614,619": "Initializing field by default value is redundant",
+								"636,642": "Name should have prefix '_'. (Rule 'Fields').",
+								"658,668": "Name should have prefix '_'. (Rule 'Fields').",
+								"684,691": "Name should have prefix '_'. (Rule 'Fields').",
+								"845,852": "Name should have prefix '_'. (Rule 'Fields')."
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Assets/Scripts/Enemies/Enemy.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2721,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								815,
-								815
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"118,123": "Name should have prefix '_'. (Rule 'Fields').",
-								"148,149": "Initializing field by default value is redundant",
-								"158,168": "Convert to constant",
-								"792,804": "Parameter 'knockbackPwr' is never used",
-								"97,102": "Name should have prefix '_'. (Rule 'Fields')."
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 107.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 1,
+					"file": "Assets/Scripts/WeaponButton.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 635,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								619,
+								591
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"197,209": "Name should have prefix '_'. (Rule 'Fields').",
+								"225,234": "Convert to constant",
+								"237,238": "Initializing field by default value is redundant",
+								"45,50": "Using directive is not used by code and can be removed safely.",
+								"576,580": "Redundant 'else' keyword"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "Assets/Scripts/Managers/SpawnManager.cs",
 					"semi_transient": false,
 					"settings":
@@ -388,14 +377,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1092.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "Assets/Scripts/Managers/Spawner.cs",
 					"semi_transient": false,
 					"settings":
@@ -407,8 +396,8 @@
 						"selection":
 						[
 							[
-								444,
-								448
+								1052,
+								1061
 							]
 						],
 						"settings":
@@ -417,27 +406,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "Assets/Scripts/Player/Player.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3178,
+						"buffer_size": 3185,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								459,
-								459
+								404,
+								404
 							]
 						],
 						"settings":
@@ -445,24 +434,25 @@
 							"oops":
 							{
 								"0,5": "Using directive is not used by code and can be removed safely.",
-								"1060,1067": "Use 'var' keyword",
-								"1344,1349": "Use 'var' keyword",
-								"1499,1500": "Assignment is redundant",
-								"1882,1883": "Comparison with 'true' is redundant",
+								"1012,1019": "Use 'var' keyword",
+								"1296,1301": "Use 'var' keyword",
+								"1451,1452": "Assignment is redundant",
+								"1834,1835": "Comparison with 'true' is redundant",
 								"240,245": "Initializing field by default value is redundant",
 								"26,31": "Using directive is not used by code and can be removed safely.",
 								"261,271": "Name should have prefix '_'. (Rule 'Fields').",
-								"2748,2756": "Parameter can be declared with base type",
-								"2807,2808": "Comparison with 'true' is redundant",
+								"2700,2708": "Parameter can be declared with base type",
+								"2759,2760": "Comparison with 'true' is redundant",
 								"287,294": "Name should have prefix '_'. (Rule 'Fields').",
-								"2939,2940": "Comparison with 'true' is redundant",
-								"3046,3054": "Parameter can be declared with base type",
+								"2891,2892": "Comparison with 'true' is redundant",
+								"2998,3006": "Parameter can be declared with base type",
 								"309,318": "Name should have prefix '_'. (Rule 'Fields').",
 								"335,344": "Name should have prefix '_'. (Rule 'Fields').",
 								"359,365": "Name should have prefix '_'. (Rule 'Fields').",
 								"389,394": "Initializing field by default value is redundant",
-								"410,411": "Initializing field by default value is redundant",
-								"549,557": "Name should have prefix '_'. (Rule 'Fields')."
+								"408,414": "Name should have prefix '_'. (Rule 'Fields').",
+								"417,418": "Initializing field by default value is redundant",
+								"540,548": "Name should have prefix '_'. (Rule 'Fields')."
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -471,7 +461,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

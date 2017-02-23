@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +15,10 @@ public class Player : LivingEntity {
 	public float moveSpeed;
 	public bool paused;
 	bool crossBoundary = false;
-	int points = 0;
+	public int points = 0;
 	int direction;
 
 	PlayerController controller;
-	Player player;
 	Camera viewCamera;
 	Animator anim;
 	SpawnManager spawner;
@@ -32,7 +31,6 @@ public class Player : LivingEntity {
 	public virtual void Start () {
 		base.Start();
 		controller = GetComponent<PlayerController>();
-		player = FindObjectOfType<Player>();
 		viewCamera = Camera.main;
 		anim = GetComponent<Animator> ();
 		spawner = FindObjectOfType<SpawnManager>();

@@ -8,39 +8,30 @@ namespace CompleteProject
 
 		//public PlayerShooting playerShooting;
 		public int weaponNumber;
+		private int bombPrice = 0;
 
-		public Text name;
-		public Text cost;
-		public Text description;
+		LayBombs bombs;
+		Player player;
 
-		private AudioSource source;
 
 		// Use this for initialization
 		void Start () 
 		{
-			source = GetComponent<AudioSource> ();
-			SetButton ();
+			player = FindObjectOfType<Player>();
+			bombs = FindObjectOfType<LayBombs>();
 		}
 
-		void SetButton()
+		public void BuyBomb()
 		{
-//			string costString = playerShooting.weapons [weaponNumber].cost.ToString ();
-//			name.text = playerShooting.weapons [weaponNumber].name;
-//			cost.text = "$" + playerShooting.weapons [weaponNumber].cost;
-//			description.text = playerShooting.weapons [weaponNumber].description;
-//		}
-//
-//		public void OnClick()
-//		{
-//			if (ScoreManager.score >= playerShooting.weapons [weaponNumber].cost) {
-//
-//				ScoreManager.score -= playerShooting.weapons [weaponNumber].cost;
-//				playerShooting.currentWeapon = weaponNumber;
+			if (player.points >= bombPrice) {
 
-//			} else 
-//			{
-//				source.Play();
-//			}
+				player.points -= bombPrice;
+				++bombs.bombCount;
+				Debug.Log("bought a bomb");
+			} else 
+			{
+				//You dont have enough money
+			}
 		}
 
 	}
