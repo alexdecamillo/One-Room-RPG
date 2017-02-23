@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour {
 
-	bool attacking = false;
-	public bool givingDamage = false;
+	public bool attacking = false;
 	Vector3 velocity;
 
 	public float damage;
@@ -13,16 +12,11 @@ public class Sword : MonoBehaviour {
 	public float swingTimer;
 	public float swingCD;
 
-	Enemy enemy;
-	Transform target;
-
 	BoxCollider hitBox;
 
 	void Start () {
-		enemy = FindObjectOfType<Enemy>();
 		hitBox = GetComponent<BoxCollider>();
 		hitBox.enabled = false;
-		target = GameObject.FindGameObjectWithTag("Enemy").transform;
 	}
 
 	void Update() {
@@ -40,7 +34,6 @@ public class Sword : MonoBehaviour {
 			else {
 				attacking = false;
 				hitBox.enabled = false;
-				givingDamage = false;
 			}
 		}
 
@@ -48,8 +41,9 @@ public class Sword : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.tag == "Enemy") {
-			col.SendMessage("TakeDamage", damage);
-			givingDamage = true;
+			Debug.Log ("Attacking enemy");
+			col.SendMessage ("TakeDamage", damage);
+			col.SendMessage ("Knockback");
 		}
 	}
 

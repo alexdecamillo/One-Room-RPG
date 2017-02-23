@@ -17,6 +17,9 @@ public class Enemy : LivingEntity {
 	float timeBetweenAttacks = 1;
 	float nextAttackTime;
 
+	bool stunned = false;
+	float knockTime = .1f;
+	float knockTimer;
 	Player player;
 	Transform target;
 	LivingEntity targetEntity;
@@ -27,18 +30,21 @@ public class Enemy : LivingEntity {
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
 		targetEntity = target.GetComponent<LivingEntity>();
 		player = FindObjectOfType<Player>();
-
 		sword = FindObjectOfType<Sword>();
 	}
 
 	void Update(){
-		if (player != null) {
+		if (player != null && !stunned) {
 			MoveToPlayer ();
 		}
-		if (sword.givingDamage)
-		{
-			StartCoroutine (Knockback(0.02f, 5 ));
-			
+
+		if(stunned){
+			if (knockTimer > 0) {
+				knockTimer -= Time.deltaTime;
+			}
+			else {
+				stunned = false;
+			}	
 		}
 	}
 
@@ -99,6 +105,12 @@ public class Enemy : LivingEntity {
 		}
 	}
 
+	public void Knockback(){
+		StartCoroutine (Knockback(1f, .02f));
+		stunned = true;
+		knockTimer = knockTime;
+	}
+
 	public IEnumerator Knockback(float knockDur, float knockbackPwr)
 	{
 		float timer = 0;
@@ -106,15 +118,9 @@ public class Enemy : LivingEntity {
 		while (knockDur > timer) 
 		{
 			timer += Time.deltaTime;
-		Debug.Log("Damage");
-				transform.Translate (new Vector3 (-.05f, 0, 0));
-			
-
-			//player.velocity.y = knockbackDir.y + knockbackPwr;
-			//player.velocity.z = target.transform.position.z;
-
+			transform.Translate (new Vector3 (-knockbackPwr, 0, 0));
 		}
-
+			
 		yield return 0;
 	}
 }
