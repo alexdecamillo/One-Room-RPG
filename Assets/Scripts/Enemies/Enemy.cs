@@ -123,4 +123,11 @@ public class Enemy : LivingEntity {
 			
 		yield return 0;
 	}
+	void OnTriggerEnter(Collider col) {
+		if (col.tag == "Bomb") {
+			SendMessage("TakeDamage", damage);
+			//givingBombDamage = true;
+			Debug.Log("Enemy Took Damage");
+		}
+	}
 }

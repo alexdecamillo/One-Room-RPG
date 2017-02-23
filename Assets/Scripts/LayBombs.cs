@@ -11,13 +11,12 @@ public class LayBombs : MonoBehaviour
 	public GameObject bomb;             // Prefab of the bomb.
 	public float bombTimer = 0.0f; 						// Time between dropped bombs
 	public float explodeBomb = 0.0f;
+	public float explosionTime = 0.2f;
 	public bool bombReady = true;
 	bool attacking = false;
 	public bool givingBombDamage = false;
 
 	public float damage;
-	public float swingTimer;
-	public float swingCD;
 
 	private GameObject instantiatedObj;
 
@@ -34,9 +33,8 @@ public class LayBombs : MonoBehaviour
 	{
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
 		enemy = FindObjectOfType<Enemy>();
-		hitBox = bomb.GetComponent<SphereCollider>();
-		hitBox.enabled = false;
-//		targetEn = GameObject.FindGameObjectWithTag("Enemy").transform;
+		instantiatedObj.GetComponent<SphereCollider>().enabled = false;
+		hitBox = instantiatedObj.GetComponent<SphereCollider>();
 		// Setting up the reference.
 	}
 
@@ -61,15 +59,12 @@ public class LayBombs : MonoBehaviour
 			// Decrement the number of bombs.
 			bombCount--;
 
-			// Play the bomb laying sound.
-			//AudioSource.PlayClipAtPoint(bombsAway,transform.position);
-
 			// Instantiate the bomb prefab.
 			instantiatedObj = Instantiate(bomb, target.transform.position, target.transform.rotation);
 
 			bombTimer = 5.0f;
 			bombLaid = true;
-			explodeBomb = 3.0f;
+			explodeBomb = 3.5f;
 
 		}
 
@@ -77,10 +72,12 @@ public class LayBombs : MonoBehaviour
 
 			explodeBomb -= Time.deltaTime;
 
-			if (explodeBomb <= 0) {
+			if (explodeBomb <= 0.5f) {
 				BombExplosion ();
+				if (explodeBomb <= 0.0f){
 				bombLaid = false;
 				Destroy(instantiatedObj, float.MinValue);
+			}
 			}
 
 
@@ -96,15 +93,9 @@ public class LayBombs : MonoBehaviour
 
 	void BombExplosion()
 	{
-			hitBox.enabled = true;
+			instantiatedObj.GetComponent<SphereCollider>().enabled = true;
 			Debug.Log("Entered Function");
 	}
-		
-	void OnTriggerEnter(Collider col) {
-		if (col.tag == "Enemy") {
-			col.SendMessage("TakeDamage", damage);
-			givingBombDamage = true;
-			Debug.Log("Enemy Took Damage");
-		}
-	}
+
+	
 }

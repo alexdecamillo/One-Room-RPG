@@ -18,7 +18,7 @@ public class HUD : MonoBehaviour {
 		spawner.RoundChange += UpdateRound;
 		player.TookDamage += UpdatePlayerHealth;
 		player.PointChange += UpdateScore;
-		Debug.Log ("Subscriptions");
+//		Debug.Log ("Subscriptions");
 		displayText = GetComponentsInChildren<Text>();
 	}
 

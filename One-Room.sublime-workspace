@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"in",
+				"inShop\tbool"
+			],
+			[
+				"Key",
+				"KeyCode\tKeyCode"
+			],
+			[
+				"Get",
+				"GetKeyDown(string name)\tbool"
+			],
+			[
+				"Co",
+				"collider\tComponent { get; }"
+			],
+			[
+				"Ins",
+				"instantiatedObj\tGameObject"
+			],
+			[
 				"bom",
 				"bombCount\tint"
 			],
@@ -86,10 +106,6 @@
 			[
 				"tar",
 				"targetEntity\tLivingEntity"
-			],
-			[
-				"Get",
-				"GetComponent<T>()\tT"
 			]
 		]
 	},
@@ -99,16 +115,25 @@
 			"file": "Assets/Scripts/LayBombs.cs",
 			"settings":
 			{
-				"buffer_size": 2591,
+				"buffer_size": 2363,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Enemies/Enemy.cs",
+			"settings":
+			{
+				"buffer_size": 2998,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "Assets/Scripts/WeaponButton.cs",
 			"settings":
 			{
-				"buffer_size": 635,
+				"buffer_size": 636,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
@@ -137,9 +162,18 @@
 			"file": "Assets/Scripts/Player/Player.cs",
 			"settings":
 			{
-				"buffer_size": 3185,
+				"buffer_size": 4382,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/UI/HUD.cs",
+			"settings":
+			{
+				"buffer_size": 983,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -243,7 +277,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -252,46 +286,44 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2591,
+						"buffer_size": 2363,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2309,
-								2309
+								1033,
+								1033
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"1269,1271": "Convert to '&=' expresssion",
-								"1319,1321": "Convert to '|=' expresssion",
-								"1398,1399": "Comparison with 'false' is redundant",
+								"1239,1241": "Convert to '&=' expresssion",
+								"1289,1291": "Convert to '|=' expresssion",
+								"1368,1369": "Comparison with 'false' is redundant",
 								"140,148": "Name should have prefix '_'. (Rule 'Fields').",
 								"151,156": "Initializing field by default value is redundant",
-								"1612,1613": "Comparison with 'true' is redundant",
+								"1582,1583": "Comparison with 'true' is redundant",
+								"1864,1865": "Comparison with 'true' is redundant",
 								"19,24": "Using directive is not used by code and can be removed safely.",
-								"1993,1994": "Comparison with 'true' is redundant",
 								"226,235": "Name should have prefix '_'. (Rule 'Fields').",
 								"238,239": "Initializing field by default value is redundant",
-								"2434,2442": "Parameter can be declared with base type",
 								"383,387": "Name should have prefix '_'. (Rule 'Fields').",
 								"438,447": "Name should have prefix '_'. (Rule 'Fields').",
 								"450,451": "Initializing field by default value is redundant",
 								"506,517": "Name should have prefix '_'. (Rule 'Fields').",
 								"520,521": "Initializing field by default value is redundant",
-								"539,548": "Name should have prefix '_'. (Rule 'Fields').",
-								"563,572": "Convert to constant",
-								"575,580": "Initializing field by default value is redundant",
-								"595,611": "Name should have prefix '_'. (Rule 'Fields').",
-								"614,619": "Initializing field by default value is redundant",
-								"636,642": "Name should have prefix '_'. (Rule 'Fields').",
-								"658,668": "Name should have prefix '_'. (Rule 'Fields').",
-								"684,691": "Name should have prefix '_'. (Rule 'Fields').",
-								"845,852": "Name should have prefix '_'. (Rule 'Fields')."
+								"540,553": "Name should have prefix '_'. (Rule 'Fields').",
+								"575,584": "Name should have prefix '_'. (Rule 'Fields').",
+								"599,608": "Convert to constant",
+								"611,616": "Initializing field by default value is redundant",
+								"631,647": "Name should have prefix '_'. (Rule 'Fields').",
+								"650,655": "Initializing field by default value is redundant",
+								"672,678": "Name should have prefix '_'. (Rule 'Fields').",
+								"832,839": "Name should have prefix '_'. (Rule 'Fields')."
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -300,24 +332,69 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Assets/Scripts/WeaponButton.cs",
+					"file": "Assets/Scripts/Enemies/Enemy.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 635,
+						"buffer_size": 2998,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								619,
-								591
+								2929,
+								2929
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"181,186": "Name should have prefix '_'. (Rule 'Fields').",
+								"2011,2022": "Convert to constant",
+								"202,207": "Name should have prefix '_'. (Rule 'Fields').",
+								"232,233": "Initializing field by default value is redundant",
+								"242,252": "Convert to constant",
+								"267,273": "Convert to constant",
+								"2843,2851": "Parameter can be declared with base type",
+								"287,310": "Convert to constant",
+								"326,348": "Convert to constant",
+								"365,383": "Convert to constant",
+								"429,434": "Initializing field by default value is redundant",
+								"443,452": "Convert to constant",
+								"557,566": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1218.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Scripts/WeaponButton.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 636,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								238,
+								238
 							]
 						],
 						"settings":
@@ -327,9 +404,8 @@
 								"19,24": "Using directive is not used by code and can be removed safely.",
 								"197,209": "Name should have prefix '_'. (Rule 'Fields').",
 								"225,234": "Convert to constant",
-								"237,238": "Initializing field by default value is redundant",
 								"45,50": "Using directive is not used by code and can be removed safely.",
-								"576,580": "Redundant 'else' keyword"
+								"577,581": "Redundant 'else' keyword"
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -342,7 +418,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "Assets/Scripts/Managers/SpawnManager.cs",
 					"semi_transient": false,
 					"settings":
@@ -380,11 +456,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "Assets/Scripts/Managers/Spawner.cs",
 					"semi_transient": false,
 					"settings":
@@ -409,24 +485,24 @@
 						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "Assets/Scripts/Player/Player.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3185,
+						"buffer_size": 4382,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								404,
-								404
+								2182,
+								2182
 							]
 						],
 						"settings":
@@ -434,25 +510,74 @@
 							"oops":
 							{
 								"0,5": "Using directive is not used by code and can be removed safely.",
-								"1012,1019": "Use 'var' keyword",
-								"1296,1301": "Use 'var' keyword",
-								"1451,1452": "Assignment is redundant",
-								"1834,1835": "Comparison with 'true' is redundant",
+								"1192,1199": "Use 'var' keyword",
+								"1420,1421": "Assignment is redundant",
+								"1476,1481": "Assignment is redundant",
+								"1543,1554": "Local variable 'rayDistance' is never used",
+								"2023,2024": "Comparison with 'true' is redundant",
+								"2164,2166": "Convert to '&=' expresssion",
+								"2175,2176": "Comparison with 'true' is redundant",
+								"2204,2205": "Comparison with 'false' is redundant",
+								"2275,2276": "Comparison with 'true' is redundant",
+								"228,237": "Convert to constant",
+								"2293,2294": "Comparison with 'false' is redundant",
 								"240,245": "Initializing field by default value is redundant",
+								"2444,2445": "Comparison with 'true' is redundant",
 								"26,31": "Using directive is not used by code and can be removed safely.",
 								"261,271": "Name should have prefix '_'. (Rule 'Fields').",
-								"2700,2708": "Parameter can be declared with base type",
-								"2759,2760": "Comparison with 'true' is redundant",
 								"287,294": "Name should have prefix '_'. (Rule 'Fields').",
-								"2891,2892": "Comparison with 'true' is redundant",
-								"2998,3006": "Parameter can be declared with base type",
 								"309,318": "Name should have prefix '_'. (Rule 'Fields').",
 								"335,344": "Name should have prefix '_'. (Rule 'Fields').",
 								"359,365": "Name should have prefix '_'. (Rule 'Fields').",
+								"3874,3882": "Parameter can be declared with base type",
 								"389,394": "Initializing field by default value is redundant",
-								"408,414": "Name should have prefix '_'. (Rule 'Fields').",
-								"417,418": "Initializing field by default value is redundant",
-								"540,548": "Name should have prefix '_'. (Rule 'Fields')."
+								"3933,3934": "Comparison with 'true' is redundant",
+								"4065,4066": "Comparison with 'true' is redundant",
+								"4083,4084": "Comparison with 'false' is redundant",
+								"4193,4201": "Parameter can be declared with base type",
+								"422,427": "Initializing field by default value is redundant",
+								"444,449": "Initializing field by default value is redundant",
+								"463,469": "Name should have prefix '_'. (Rule 'Fields').",
+								"472,473": "Initializing field by default value is redundant",
+								"492,493": "Initializing field by default value is redundant",
+								"548,554": "The private field 'player' is never assigned",
+								"630,638": "Name should have prefix '_'. (Rule 'Fields').",
+								"655,659": "'Shop' should start with a lower case letter. (Rule 'Fields')"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 888.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Assets/Scripts/UI/HUD.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 983,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								420,
+								420
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"124,134": "Name should have prefix '_'. (Rule 'Fields').",
+								"544,545": "Comparison with 'true' is redundant",
+								"621,622": "Comparison with 'false' is redundant"
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false

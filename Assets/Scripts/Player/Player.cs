@@ -15,6 +15,8 @@ public class Player : LivingEntity {
 	public float moveSpeed;
 	public bool paused;
 	bool crossBoundary = false;
+	bool crossShopBoundary = false;
+	bool inShop = false;
 	public int points = 0;
 	int direction = 0;
 
@@ -25,6 +27,7 @@ public class Player : LivingEntity {
 	Animator anim;
 	SpawnManager spawner;
 	public Light dayLight;
+	public Canvas Shop;
 
 	public event System.Action OnPause;
 	public event System.Action PointChange;
@@ -38,6 +41,7 @@ public class Player : LivingEntity {
 		spawner = FindObjectOfType<SpawnManager>();
 		dayLight = FindObjectOfType<Light>();
 		sword = GetComponentInChildren <Sword> ();
+		Shop.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -82,7 +86,21 @@ public class Player : LivingEntity {
 				dayLight.enabled = false;
 
 			}
-
+			if (inShop == true && crossShopBoundary == false)
+			{
+				Shop.enabled = false;
+			}
+			if (crossShopBoundary == true && inShop == false && Input.GetKeyDown (KeyCode.E)) {
+				 inShop = true;
+				 Shop.enabled = true;
+				 Debug.Log ("Shop pressed");
+		}
+			 
+			else if (inShop == true && Input.GetKeyDown(KeyCode.E)){
+				Shop.enabled = false;
+				inShop = false;
+			}
+			
 			// handle animations
 			if (moveInput.z < 0)
 				direction = 0;	// foward
@@ -124,6 +142,7 @@ public class Player : LivingEntity {
 			}
 		}
 
+
 	}
 
 	public void AddPoints(int points) {
@@ -145,9 +164,9 @@ public class Player : LivingEntity {
 			activeBed.text = ("Press E to go to sleep");
 			crossBoundary = true;
 		}
-		if (col.tag == "Shop" && spawner.dayCycle == true) {
+		if (col.tag == "Shop" && spawner.dayCycle == true && inShop == false) {
 			activeBed.text = ("Press E to shop");
-			//crossBoundary = true;
+			crossShopBoundary = true;
 		}
 	}
 
@@ -158,7 +177,7 @@ public class Player : LivingEntity {
 		}
 		if (col.tag == "Shop") {
 			activeBed.text = ("");
-			//crossBoundary = false;
+			crossShopBoundary = false;
 		}
 	}
 }

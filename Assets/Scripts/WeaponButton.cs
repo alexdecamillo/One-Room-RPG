@@ -8,7 +8,7 @@ namespace CompleteProject
 
 		//public PlayerShooting playerShooting;
 		public int weaponNumber;
-		private int bombPrice = 0;
+		private int bombPrice = 50;
 
 		LayBombs bombs;
 		Player player;
