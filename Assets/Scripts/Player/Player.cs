@@ -51,6 +51,7 @@ public class Player : LivingEntity {
 	// Update is called once per frame
 	void Update () {
 		
+
 		if (!paused) {
 			// Movement input
 			Vector3 moveInput = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical"));

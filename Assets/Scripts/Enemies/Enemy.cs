@@ -16,6 +16,7 @@ public class Enemy : LivingEntity {
 	float chaseDistanceThreshold = 20.0f;
 	float timeBetweenAttacks = 1;
 	float nextAttackTime;
+	public float knockPwr;
 
 	bool stunned = false;
 	float knockTime = .1f;
@@ -106,7 +107,7 @@ public class Enemy : LivingEntity {
 	}
 
 	public void Knockback(){
-		StartCoroutine (Knockback(1f, .02f));
+		StartCoroutine (Knockback(1f, knockPwr /*.02f*/));
 		stunned = true;
 		knockTimer = knockTime;
 	}
@@ -126,7 +127,6 @@ public class Enemy : LivingEntity {
 	void OnTriggerEnter(Collider col) {
 		if (col.tag == "Bomb") {
 			SendMessage("TakeDamage", damage);
-			//givingBombDamage = true;
 			Debug.Log("Enemy Took Damage");
 		}
 	}

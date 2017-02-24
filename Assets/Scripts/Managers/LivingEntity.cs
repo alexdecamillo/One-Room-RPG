@@ -5,10 +5,11 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, iDamagable {
 
 	public float startingHealth;
+	public float maxHealth;
 	public int value;
 	Player player;
 
-	public float health {get; protected set;}
+	public float health;
 	protected bool dead;
 
 	public event System.Action OnDeath;

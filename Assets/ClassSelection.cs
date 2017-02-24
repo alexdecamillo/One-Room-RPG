@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ClassSelection : MonoBehaviour {
+
+	public bool setKnight = false;
+	public bool setRogue = false;
+	public bool setTank = false;
+	Player player;
+	Sword sword;
+	Enemy enemy;
+	public Canvas selectClass;
+
+
+	// Use this for initialization
+	void Start () {
+		player = FindObjectOfType<Player>();
+		sword = FindObjectOfType<Sword>();
+		enemy = FindObjectOfType<Enemy>();
+		selectClass = FindObjectOfType<Canvas>();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	public void SelectKnight()
+	{
+		player.maxHealth = 100;
+		player.moveSpeed = 2;
+		sword.damage = 4;
+		sword.swingTimer = .27f;
+		enemy.knockPwr = .02f;
+		selectClass.enabled = false;
+	}
+	public void SelectRogue()
+	{
+
+		player.maxHealth = 80;
+		player.moveSpeed = 4;
+		sword.damage = 2;
+		sword.swingTimer = .15f;
+		enemy.knockPwr = .01f;
+		selectClass.enabled = false;
+	}
+	public void SelectTank()
+	{
+
+		player.maxHealth = 150;
+		player.health = 150;
+		player.moveSpeed = 1;
+		sword.damage = 6;
+		sword.swingTimer = .5f;
+		enemy.knockPwr = .03f;
+		selectClass.enabled = false;
+	}
+}

@@ -2,13 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class TitleScreen : MonoBehaviour {
+ // Retrieve the name of this scene.
+	[HideInInspector]
+     public string sceneName;
 
 	void Update()
 	{
+		// Create a temporary reference to the current scene.
+		 Scene currentScene = SceneManager.GetActiveScene ();
+ 
+         sceneName = currentScene.name;
+
+
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			StartGame();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			StartMenu();
 		}
 	}
 
@@ -26,6 +41,18 @@ public class TitleScreen : MonoBehaviour {
 	public void StartPrologue()
 	{
 	 Application.LoadLevelAsync("Prologue");
-	 Debug.Log("object message");
+	}
+
+	public void StartMenu()
+	{
+		if(sceneName == "Prologue" || sceneName == "Credits"){
+	 Application.LoadLevelAsync("Title Screen");
+	}
+	}
+
+	public void StartCredits()
+	{
+	 Application.LoadLevelAsync("Credits");
+	 //Debug.Log("object message");
 	}
 }
