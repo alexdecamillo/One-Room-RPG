@@ -50,7 +50,10 @@ public class Player : LivingEntity {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
 
 		if (!paused) {
 			// Movement input

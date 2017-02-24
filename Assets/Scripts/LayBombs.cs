@@ -24,6 +24,7 @@ public class LayBombs : MonoBehaviour
 	Vector3 velocity;
 	Transform target;
 	Enemy enemy;
+	public SpawnManager spawnManager;
 	//Transform targetEn;
 
 	public Text bombHUD;         // Heads up display of whether the player has a bomb or not.
@@ -35,6 +36,7 @@ public class LayBombs : MonoBehaviour
 		enemy = FindObjectOfType<Enemy>();
 		instantiatedObj.GetComponent<SphereCollider>().enabled = false;
 		hitBox = instantiatedObj.GetComponent<SphereCollider>();
+		spawnManager = FindObjectOfType<SpawnManager>();
 		// Setting up the reference.
 	}
 
@@ -54,7 +56,7 @@ public class LayBombs : MonoBehaviour
 			bombTimer -= Time.deltaTime;
 		}
 		// If the bomb laying button is pressed, the bomb hasn't been laid and there's a bomb to lay...
-		if(Input.GetButtonDown("Fire2") && bombCount > 0 && bombReady == true)
+		if(Input.GetButtonDown("Fire2") && bombCount > 0 && bombReady == true && spawnManager.dayCycle == false)
 		{
 			// Decrement the number of bombs.
 			bombCount--;
@@ -83,9 +85,6 @@ public class LayBombs : MonoBehaviour
 
 
 		}
-
-
-	
 
 		// The bomb heads up display should be enabled if the player has bombs, other it should be disabled.
 		bombHUD.text = bombCount + (" Bombs");

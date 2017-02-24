@@ -17,7 +17,6 @@ public class ClassSelection : MonoBehaviour {
 	void Start () {
 		player = FindObjectOfType<Player>();
 		sword = FindObjectOfType<Sword>();
-		enemy = FindObjectOfType<Enemy>();
 		selectClass = FindObjectOfType<Canvas>();
 	}
 	
@@ -29,20 +28,20 @@ public class ClassSelection : MonoBehaviour {
 	public void SelectKnight()
 	{
 		player.maxHealth = 100;
+		player.health = 100;
 		player.moveSpeed = 2;
 		sword.damage = 4;
-		sword.swingTimer = .27f;
-		enemy.knockPwr = .02f;
+		//sword.swingCD = .1f;
 		selectClass.enabled = false;
 	}
 	public void SelectRogue()
 	{
 
 		player.maxHealth = 80;
+		player.health = 80;
 		player.moveSpeed = 4;
 		sword.damage = 2;
-		sword.swingTimer = .15f;
-		enemy.knockPwr = .01f;
+		//sword.swingCD = .15f;
 		selectClass.enabled = false;
 	}
 	public void SelectTank()
@@ -52,8 +51,7 @@ public class ClassSelection : MonoBehaviour {
 		player.health = 150;
 		player.moveSpeed = 1;
 		sword.damage = 6;
-		sword.swingTimer = .5f;
-		enemy.knockPwr = .03f;
+		//sword.swingCD = .3f;
 		selectClass.enabled = false;
 	}
 }
