@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"he",
+				"healthBar\tSlider"
+			],
+			[
+				"hea",
+				"health\tfloat"
+			],
+			[
+				"po",
+				"potionCount\tint"
+			],
+			[
+				"A",
+				"Alpha1\tKeyCode"
+			],
+			[
+				"ac",
+				"activeSelf\tbool { get; }"
+			],
+			[
+				"Ca",
+				"Canvas\tCanvas"
+			],
+			[
+				"Fin",
+				"FindGameObjectWithTag(string tag)\tGameObject"
+			],
+			[
+				"sta",
+				"statUpgradePrice\tint"
+			],
+			[
+				"Spaw",
+				"SpawnManager\tSpawnManager"
+			],
+			[
+				"fin",
+				"FindObjectOfType<T>()\tT"
+			],
+			[
+				"en",
+				"Enemy\tEnemy"
+			],
+			[
+				"s",
+				"swingTimer\tfloat"
+			],
+			[
+				"Leve",
+				"loadedLevel\tint { get; }"
+			],
+			[
 				"Loa",
 				"LoadLevelAsync(string levelName)\tAsyncOperation"
 			],
@@ -36,20 +88,12 @@
 				"bombCount\tint"
 			],
 			[
-				"po",
-				"points\tint"
-			],
-			[
 				"m",
 				"MinValue\tfloat"
 			],
 			[
 				"b",
 				"bomb\tGameObject"
-			],
-			[
-				"Fin",
-				"FindObjectOfType<T>()\tT"
 			],
 			[
 				"sw",
@@ -68,20 +112,12 @@
 				"Translate(float x, float y, float z)\tvoid"
 			],
 			[
-				"en",
-				"enemy\tEnemy"
-			],
-			[
 				"Vec",
 				"Vector3\tVector3"
 			],
 			[
 				"Pla",
 				"Player\tPlayer"
-			],
-			[
-				"he",
-				"healthSlider\tSlider"
 			],
 			[
 				"pr",
@@ -100,10 +136,6 @@
 				"FindGameObjectWithTag(string tag)\tGameObject"
 			],
 			[
-				"hea",
-				"health\tfloat"
-			],
-			[
 				"h",
 				"health\tfloat"
 			],
@@ -120,84 +152,46 @@
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/LayBombs.cs",
-			"settings":
-			{
-				"buffer_size": 2363,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Enemies/Enemy.cs",
-			"settings":
-			{
-				"buffer_size": 2998,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/WeaponButton.cs",
-			"settings":
-			{
-				"buffer_size": 636,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Managers/TitleScreen.cs",
-			"settings":
-			{
-				"buffer_size": 506,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/UI/PauseMenu.cs",
-			"settings":
-			{
-				"buffer_size": 704,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Managers/SpawnManager.cs",
-			"settings":
-			{
-				"buffer_size": 3584,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "using UnityEngine;\nusing System.Collections;\n\npublic class Spawner : MonoBehaviour {\n\n\tSpawnManager manager;\n\tSpawnManager spawner;\n\t\n\n\tWave[] waves;\n\n\tpublic Enemy spawn;\n\tpublic Transform[] spawners;\n\tpublic bool dayCycle = true;\n\n\tTransform spawnPoint;\n\n\tWave currentWave;\n\tint currentWaveNumber;\n\n\tint enemiesRemainingToSpawn;\n\tint enemiesRemainingAlive;\n\tfloat nextSpawnTime;\n\n\tbool RoundCheck() {\n\t\tif (manager.GetRoundComplete()) return true;\n\t\telse return false;\n\t}\n\n\tvoid Start() {\n\t\t\n\n\t\tspawner = FindObjectOfType<SpawnManager>();\n\t\tmanager = GetComponentInParent<SpawnManager>();\n\t\tmanager.Start();\n\n\t\tfor (int i = 0; i <= transform.childCount - 1; i++)\n\t\t\tspawners[i] = transform.GetChild(i);\n\n\t\tSetWaves();\n\t\tNextWave();\n\t}\n\n\tvoid Update() {\n\t\tif (enemiesRemainingToSpawn > 0 && Time.time > nextSpawnTime && Time.time > currentWave.delay) {\n\t\t\tFindSpawnPoint();\n\t\t\tenemiesRemainingToSpawn--;\n\t\t\tnextSpawnTime = Time.time + currentWave.timeBetweenSpawns;\n\n\t\t\tEnemy spawnedEnemy = Instantiate(spawn, spawnPoint.position, Quaternion.identity) as Enemy;\n\t\t\tspawnedEnemy.OnDeath += OnEnemyDeath;\n\t\t}\n\t\telse if (enemiesRemainingAlive == 0 && currentWaveNumber != waves.Length) {\n\t\t\tNextWave();\n\t\t}\n\t\tif (RoundCheck()) {\n\t\t\tDebug.Log(gameObject.name + \" round complete\");\n\t\t\tSetWaves();\n\t\t\tNextWave();\n\t\t}\n\t}\n\n\tvoid OnEnemyDeath() {\n\t\tenemiesRemainingAlive--;\n\t\tDebug.Log(\"Enemy was killed\");\n\t\tif (enemiesRemainingAlive == 0 && currentWaveNumber >= waves.Length) {\n\t\t\tDebug.Log(\"Spawner round ended\");\n\t\t\tmanager.RoundEnd();\n\t\t}\n\t\telse if (enemiesRemainingAlive == 0) {\n\t\t\tNextWave();\n\t\t}\n\t}\n\n\tvoid NextWave() {\n\n\t\tif (spawner.dayCycle == false) {\n\t\t\tif (currentWaveNumber < waves.Length) {\n\t\t\t\tcurrentWave = waves [currentWaveNumber];\n\n\t\t\t\tenemiesRemainingToSpawn = currentWave.enemyCount;\n\t\t\t\tenemiesRemainingAlive = enemiesRemainingToSpawn;\n\t\t\t\tcurrentWave.delay += Time.time;\n\n\t\t\t\tDebug.Log (\"Round: \" + manager.GetRoundNum () + \"Wave: \" + (currentWaveNumber + 1) + \". Enemies: \" + enemiesRemainingToSpawn);\n\t\t\t}\n\t\t\tcurrentWaveNumber++;\n\t\t}\n\t}\n\n\tvoid FindSpawnPoint() {\n\t\tint point = Random.Range(0, spawners.Length);\n\t\tspawnPoint = spawners[point];\n\t}\n\n\tvoid SetWaves() {\n\t\tDebug.Log(\"Waves set\");\n\t\twaves = manager.GetWaves();\n\t\tcurrentWaveNumber = 0;\n\t}\n\n\t//[System.Serializable]\n\tpublic class Wave\n\t{\n\t\tpublic int enemyCount;\n\n\t\t// time in seconds\n\t\tpublic float timeBetweenSpawns;\n\t\tpublic float delay;\n\t}\n}\n",
-			"file": "Assets/Scripts/Managers/Spawner.cs",
-			"file_size": 2533,
-			"file_write_time": 131322413374303723,
-			"settings":
-			{
-				"buffer_size": 2424,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "Assets/Scripts/Player/Player.cs",
 			"settings":
 			{
-				"buffer_size": 4473,
+				"buffer_size": 4904,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/UI/HUD.cs",
+			"file": "Assets/Scripts/LayBombs.cs",
 			"settings":
 			{
-				"buffer_size": 983,
+				"buffer_size": 2536,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Managers/LivingEntity.cs",
+			"settings":
+			{
+				"buffer_size": 883,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/ClassSelection.cs",
+			"settings":
+			{
+				"buffer_size": 1066,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Sword.cs",
+			"settings":
+			{
+				"buffer_size": 942,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
@@ -248,17 +242,22 @@
 	},
 	"expanded_folders":
 	[
-		"/F/Unity Projects/One-Room-RPG/Assets/Scripts",
-		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Enemies",
-		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers",
-		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Player"
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts"
 	],
 	"file_history":
 	[
-		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/UI/PauseMenu.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/WeaponButton.cs",
 		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Enemies/Enemy.cs",
-		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/LivingEntity.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Player/Player.cs",
 		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Sword.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/UI/PauseMenu.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/LayBombs.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/ClassSelection.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/LivingEntity.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/UI/HUD.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/SpawnManager.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/Spawner.cs",
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/TitleScreen.cs",
 		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Player/PlayerController.cs",
 		"/F/Unity Projects/One-Room-RPG/One-Room.sublime-project",
 		"/F/Unity Projects/2D-Platformer/2D Platforming Game/Assets/Scripts/LivingEntity.cs",
@@ -285,6 +284,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"health",
+			"slider",
+			"SendMessage",
 			"slider",
 			"path"
 		],
@@ -304,38 +306,113 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/LayBombs.cs",
+					"file": "Assets/Scripts/Player/Player.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2363,
+						"buffer_size": 4904,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1033,
-								1033
+								4019,
+								4019
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"1239,1241": "Convert to '&=' expresssion",
-								"1289,1291": "Convert to '|=' expresssion",
-								"1368,1369": "Comparison with 'false' is redundant",
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"1443,1450": "Use 'var' keyword",
+								"1671,1672": "Assignment is redundant",
+								"1727,1732": "Assignment is redundant",
+								"1794,1805": "Local variable 'rayDistance' is never used",
+								"2274,2275": "Comparison with 'true' is redundant",
+								"228,237": "Convert to constant",
+								"240,245": "Initializing field by default value is redundant",
+								"2473,2475": "Convert to '&=' expresssion",
+								"2484,2485": "Comparison with 'true' is redundant",
+								"2513,2514": "Comparison with 'false' is redundant",
+								"2584,2585": "Comparison with 'true' is redundant",
+								"26,31": "Using directive is not used by code and can be removed safely.",
+								"2602,2603": "Comparison with 'false' is redundant",
+								"261,271": "Name should have prefix '_'. (Rule 'Fields').",
+								"2753,2754": "Comparison with 'true' is redundant",
+								"287,294": "Name should have prefix '_'. (Rule 'Fields').",
+								"309,318": "Name should have prefix '_'. (Rule 'Fields').",
+								"335,349": "Name should have prefix '_'. (Rule 'Fields').",
+								"371,380": "Name should have prefix '_'. (Rule 'Fields').",
+								"395,401": "Name should have prefix '_'. (Rule 'Fields').",
+								"425,430": "Initializing field by default value is redundant",
+								"4261,4269": "Parameter can be declared with base type",
+								"4320,4321": "Comparison with 'true' is redundant",
+								"4452,4453": "Comparison with 'true' is redundant",
+								"4470,4471": "Comparison with 'false' is redundant",
+								"458,463": "Initializing field by default value is redundant",
+								"4580,4588": "Parameter can be declared with base type",
+								"480,485": "Initializing field by default value is redundant",
+								"4818,4824": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"499,505": "Name should have prefix '_'. (Rule 'Fields').",
+								"508,509": "Initializing field by default value is redundant",
+								"528,529": "Initializing field by default value is redundant",
+								"543,554": "Name should have prefix '_'. (Rule 'Fields').",
+								"557,558": "Initializing field by default value is redundant",
+								"613,619": "The private field 'player' is never assigned",
+								"696,704": "Name should have prefix '_'. (Rule 'Fields').",
+								"721,725": "'Shop' should start with a lower case letter. (Rule 'Fields')",
+								"746,751": "Name should have prefix '_'. (Rule 'Fields').",
+								"772,777": "Name should have prefix '_'. (Rule 'Fields').",
+								"792,801": "Name should have prefix '_'. (Rule 'Fields').",
+								"819,828": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1764.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/LayBombs.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								2
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1325,1327": "Convert to '&=' expresssion",
+								"1375,1377": "Convert to '|=' expresssion",
 								"140,148": "Name should have prefix '_'. (Rule 'Fields').",
+								"1454,1455": "Comparison with 'false' is redundant",
 								"151,156": "Initializing field by default value is redundant",
-								"1582,1583": "Comparison with 'true' is redundant",
-								"1864,1865": "Comparison with 'true' is redundant",
+								"1680,1681": "Comparison with 'true' is redundant",
 								"19,24": "Using directive is not used by code and can be removed safely.",
+								"2222,2223": "Comparison with 'true' is redundant",
+								"2255,2256": "Comparison with 'false' is redundant",
 								"226,235": "Name should have prefix '_'. (Rule 'Fields').",
 								"238,239": "Initializing field by default value is redundant",
 								"383,387": "Name should have prefix '_'. (Rule 'Fields').",
@@ -350,163 +427,8 @@
 								"631,647": "Name should have prefix '_'. (Rule 'Fields').",
 								"650,655": "Initializing field by default value is redundant",
 								"672,678": "Name should have prefix '_'. (Rule 'Fields').",
-								"832,839": "Name should have prefix '_'. (Rule 'Fields')."
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Enemies/Enemy.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2998,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2929,
-								2929
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"181,186": "Name should have prefix '_'. (Rule 'Fields').",
-								"2011,2022": "Convert to constant",
-								"202,207": "Name should have prefix '_'. (Rule 'Fields').",
-								"232,233": "Initializing field by default value is redundant",
-								"242,252": "Convert to constant",
-								"267,273": "Convert to constant",
-								"2843,2851": "Parameter can be declared with base type",
-								"287,310": "Convert to constant",
-								"326,348": "Convert to constant",
-								"365,383": "Convert to constant",
-								"429,434": "Initializing field by default value is redundant",
-								"443,452": "Convert to constant",
-								"557,566": "Name should have prefix '_'. (Rule 'Fields')."
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 152.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Assets/Scripts/WeaponButton.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 636,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								238,
-								238
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"19,24": "Using directive is not used by code and can be removed safely.",
-								"197,209": "Name should have prefix '_'. (Rule 'Fields').",
-								"225,234": "Convert to constant",
-								"45,50": "Using directive is not used by code and can be removed safely.",
-								"577,581": "Redundant 'else' keyword"
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Assets/Scripts/Managers/TitleScreen.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								230,
-								230
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"0,5": "Using directive is not used by code and can be removed safely.",
-								"252,260": "Method 'ExitGame' can be made static.",
-								"26,31": "Using directive is not used by code and can be removed safely.",
-								"306,315": "Method 'StartGame' can be made static.",
-								"323,334": "'UnityEngine.Application.LoadLevelAsync' is obsolete",
-								"409,422": "Method 'StartPrologue' can be made static.",
-								"430,441": "'UnityEngine.Application.LoadLevelAsync' is obsolete",
-								"79,84": "Using directive is not used by code and can be removed safely."
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Assets/Scripts/UI/PauseMenu.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 704,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								470,
-								470
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"19,24": "Using directive is not used by code and can be removed safely.",
-								"588,595": "Method 'EndGame' can be made static.",
-								"655,666": "'UnityEngine.Application.LoadLevelAsync' is obsolete"
+								"816,828": "Name should have prefix '_'. (Rule 'Fields').",
+								"867,874": "Name should have prefix '_'. (Rule 'Fields')."
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -519,12 +441,12 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "Assets/Scripts/Managers/SpawnManager.cs",
-					"semi_transient": false,
+					"buffer": 2,
+					"file": "Assets/Scripts/Managers/LivingEntity.cs",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3584,
+						"buffer_size": 883,
 						"regions":
 						{
 						},
@@ -533,48 +455,6 @@
 							[
 								0,
 								0
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"19,24": "Using directive is not used by code and can be removed safely.",
-								"3316,3317": "Use 'var' keyword",
-								"332,345": "Convert to constant",
-								"3464,3472": "Name should have prefix '_'. (Rule 'Fields').",
-								"348,349": "Initializing field by default value is redundant",
-								"368,379": "Convert to constant",
-								"391,402": "Convert to constant",
-								"490,498": "Name should have prefix '_'. (Rule 'Fields').",
-								"828,833": "Parameter can be declared with base type",
-								"836,841": "Parameter 'round' hides field 'SpawnManager.round'"
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Assets/Scripts/Managers/Spawner.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2424,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								493,
-								493
 							]
 						],
 						"settings":
@@ -583,27 +463,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 210.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "Assets/Scripts/Player/Player.cs",
+					"buffer": 3,
+					"file": "Assets/ClassSelection.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4473,
+						"buffer_size": 1066,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1012,
+								1012
 							]
 						],
 						"settings":
@@ -611,74 +491,14 @@
 							"oops":
 							{
 								"0,5": "Using directive is not used by code and can be removed safely.",
-								"1192,1199": "Use 'var' keyword",
-								"1420,1421": "Assignment is redundant",
-								"1476,1481": "Assignment is redundant",
-								"1543,1554": "Local variable 'rayDistance' is never used",
-								"2023,2024": "Comparison with 'true' is redundant",
-								"2164,2166": "Convert to '&=' expresssion",
-								"2175,2176": "Comparison with 'true' is redundant",
-								"2204,2205": "Comparison with 'false' is redundant",
-								"2275,2276": "Comparison with 'true' is redundant",
-								"228,237": "Convert to constant",
-								"2293,2294": "Comparison with 'false' is redundant",
-								"240,245": "Initializing field by default value is redundant",
-								"2444,2445": "Comparison with 'true' is redundant",
-								"26,31": "Using directive is not used by code and can be removed safely.",
-								"261,271": "Name should have prefix '_'. (Rule 'Fields').",
-								"287,294": "Name should have prefix '_'. (Rule 'Fields').",
-								"309,318": "Name should have prefix '_'. (Rule 'Fields').",
-								"335,344": "Name should have prefix '_'. (Rule 'Fields').",
-								"359,365": "Name should have prefix '_'. (Rule 'Fields').",
-								"3874,3882": "Parameter can be declared with base type",
-								"389,394": "Initializing field by default value is redundant",
-								"3933,3934": "Comparison with 'true' is redundant",
-								"4065,4066": "Comparison with 'true' is redundant",
-								"4083,4084": "Comparison with 'false' is redundant",
-								"4193,4201": "Parameter can be declared with base type",
-								"422,427": "Initializing field by default value is redundant",
-								"444,449": "Initializing field by default value is redundant",
-								"463,469": "Name should have prefix '_'. (Rule 'Fields').",
-								"472,473": "Initializing field by default value is redundant",
-								"492,493": "Initializing field by default value is redundant",
-								"548,554": "The private field 'player' is never assigned",
-								"630,638": "Name should have prefix '_'. (Rule 'Fields').",
-								"655,659": "'Shop' should start with a lower case letter. (Rule 'Fields')"
-							},
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 888.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "Assets/Scripts/UI/HUD.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 983,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								420,
-								420
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"124,134": "Name should have prefix '_'. (Rule 'Fields').",
-								"544,545": "Comparison with 'true' is redundant",
-								"621,622": "Comparison with 'false' is redundant"
+								"140,149": "Name should have prefix '_'. (Rule 'Fields').",
+								"152,157": "Initializing field by default value is redundant",
+								"172,180": "Name should have prefix '_'. (Rule 'Fields').",
+								"183,188": "Initializing field by default value is redundant",
+								"203,210": "Name should have prefix '_'. (Rule 'Fields').",
+								"213,218": "Initializing field by default value is redundant",
+								"257,262": "The private field 'enemy' is never assigned",
+								"26,31": "Using directive is not used by code and can be removed safely."
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -687,7 +507,48 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/Scripts/Sword.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 942,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								930,
+								900
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"131,140": "Name should have prefix '_'. (Rule 'Fields').",
+								"143,148": "Initializing field by default value is redundant",
+								"184,190": "Name should have prefix '_'. (Rule 'Fields').",
+								"207,217": "Name should have prefix '_'. (Rule 'Fields').",
+								"233,240": "Name should have prefix '_'. (Rule 'Fields').",
+								"26,31": "Using directive is not used by code and can be removed safely.",
+								"508,509": "Comparison with 'false' is redundant",
+								"776,784": "Parameter can be declared with base type"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

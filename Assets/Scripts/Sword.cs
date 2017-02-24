@@ -12,16 +12,18 @@ public class Sword : MonoBehaviour {
 	public float swingTimer;
 	public float swingCD;
 
+	SpawnManager spawner;
 	BoxCollider hitBox;
 
 	void Start () {
 		hitBox = GetComponent<BoxCollider>();
 		hitBox.enabled = false;
+		spawner = FindObjectOfType<SpawnManager>();
 	}
 
 	void Update() {
 
-		if (Input.GetButtonDown("Fire1") && !attacking) {
+		if (Input.GetButtonDown("Fire1") && !attacking && spawner.dayCycle == false) {
 			attacking = true;
 			swingTimer = swingCD;
 			hitBox.enabled = true;

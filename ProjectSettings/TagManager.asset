@@ -8,6 +8,7 @@ TagManager:
   - Bed
   - Shop
   - Bomb
+  - Class
   layers:
   - Default
   - TransparentFX

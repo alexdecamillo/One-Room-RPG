@@ -24,7 +24,6 @@ public class Enemy : LivingEntity {
 	Player player;
 	Transform target;
 	LivingEntity targetEntity;
-	public Slider healthBar;
 
 	public virtual void Start(){
 		base.Start ();
@@ -95,7 +94,6 @@ public class Enemy : LivingEntity {
 			{
 				hasAppliedDamage = true;
 				targetEntity.TakeDamage(damage);
-				//healthBar.value = targetEntity.health;
 			}
 
 			percent += Time.deltaTime * attackSpeed;
@@ -127,7 +125,7 @@ public class Enemy : LivingEntity {
 	void OnTriggerEnter(Collider col) {
 		if (col.tag == "Bomb") {
 			SendMessage("TakeDamage", damage);
-			Debug.Log("Enemy Took Damage");
+			//SendMessage ("Knockback");
 		}
 	}
 }

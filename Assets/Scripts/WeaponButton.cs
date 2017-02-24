@@ -6,9 +6,9 @@ namespace CompleteProject
 {
 	public class WeaponButton : MonoBehaviour {
 
-		private int bombPrice = 50;
-		private int statUpgradePrice = 500;
-		private int potionPrice = 50;
+		public int bombPrice = 50;
+		public int statUpgradePrice = 0;
+		public int potionPrice = 0;
 
 		public Text warning;
 
@@ -32,23 +32,23 @@ namespace CompleteProject
 				player.points -= bombPrice;
 				++bombs.bombCount;
 				Debug.Log("bought a bomb");
-			} else 
+			} /*else 
 			{
 				//warning.text = ("Not enough points!");
-			}
+			}*/
 		}
 
 		public void BuyPotion()
 		{
 			if (player.points >= potionPrice) {
 
-				player.points -= bombPrice;
-				++bombs.bombCount;
-				Debug.Log("bought a bomb");
-			} else 
+				player.points -= potionPrice;
+				++player.potionCount;
+				//Debug.Log("bought a bomb");
+			} /*else 
 			{
 				//warning.text = ("Not enough points!");
-			}
+			}*/
 		}
 
 		public void BuyMaxHealth()
@@ -57,10 +57,10 @@ namespace CompleteProject
 
 				player.points -= statUpgradePrice;
 				player.maxHealth += 10;
-			} else 
+			}/* else 
 			{
 				//warning.text = ("Not enough points!");
-			}
+			}*/
 		}
 
 		public void BuyMoveSpeed()
@@ -69,10 +69,10 @@ namespace CompleteProject
 
 				player.points -= statUpgradePrice;
 				++player.moveSpeed;
-			} else 
+			}/* else 
 			{
 				//warning.text = ("Not enough points!");
-			}
+			}*/
 		}
 
 		public void BuyAttackPower()
@@ -81,10 +81,10 @@ namespace CompleteProject
 
 				player.points -= statUpgradePrice;
 				++sword.damage;
-			} else 
+			}/* else 
 			{
 				//warning.text = ("Not enough points!");
-			}
+			}*/
 		}
 		
 	}

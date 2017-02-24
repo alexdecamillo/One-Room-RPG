@@ -10,20 +10,13 @@ public class ClassSelection : MonoBehaviour {
 	Player player;
 	Sword sword;
 	Enemy enemy;
-	public Canvas selectClass;
-
 
 	// Use this for initialization
 	void Start () {
 		player = FindObjectOfType<Player>();
-		sword = FindObjectOfType<Sword>();
-		selectClass = FindObjectOfType<Canvas>();
-	}
+		sword = FindObjectOfType<Sword>();	
+		}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void SelectKnight()
 	{
@@ -31,8 +24,8 @@ public class ClassSelection : MonoBehaviour {
 		player.health = 100;
 		player.moveSpeed = 2;
 		sword.damage = 4;
-		//sword.swingCD = .1f;
-		selectClass.enabled = false;
+		player.healthBar.maxValue = player.maxHealth;
+		gameObject.SetActive(!gameObject.activeSelf);
 	}
 	public void SelectRogue()
 	{
@@ -41,8 +34,8 @@ public class ClassSelection : MonoBehaviour {
 		player.health = 80;
 		player.moveSpeed = 4;
 		sword.damage = 2;
-		//sword.swingCD = .15f;
-		selectClass.enabled = false;
+		player.healthBar.maxValue = player.maxHealth;
+		gameObject.SetActive(!gameObject.activeSelf);
 	}
 	public void SelectTank()
 	{
@@ -51,7 +44,7 @@ public class ClassSelection : MonoBehaviour {
 		player.health = 150;
 		player.moveSpeed = 1;
 		sword.damage = 6;
-		//sword.swingCD = .3f;
-		selectClass.enabled = false;
+		player.healthBar.maxValue = player.maxHealth;
+		gameObject.SetActive(!gameObject.activeSelf);
 	}
 }

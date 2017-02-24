@@ -12,6 +12,7 @@ public class Player : LivingEntity {
 	public float swingCD;
 	public Text activeBed;
 
+	public float potionStrength = 10f;
 	public float moveSpeed;
 	public bool paused;
 	bool crossBoundary = false;
@@ -19,6 +20,7 @@ public class Player : LivingEntity {
 	bool inShop = false;
 	public int points = 0;
 	int direction = 0;
+	public int potionCount = 0;
 
 	Sword sword;
 	PlayerController controller;
@@ -31,6 +33,8 @@ public class Player : LivingEntity {
 	public Canvas Shop;
 	public GameObject plane;
 	public GameObject cycle;
+	public Text healthHUD; 
+	public Slider healthBar;
 
 	public event System.Action OnPause;
 	public event System.Action PointChange;
@@ -143,6 +147,10 @@ public class Player : LivingEntity {
 			*/
 		} 
 
+		if(Input.GetKeyDown(KeyCode.Alpha1))
+		{	
+			Potion();
+		}
 		// pause controller
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			paused = !paused;
@@ -151,7 +159,8 @@ public class Player : LivingEntity {
 			}
 		}
 
-
+		healthHUD.text = potionCount + "";
+		healthBar.value = health;
 	}
 
 	public void AddPoints(int points) {
@@ -189,4 +198,17 @@ public class Player : LivingEntity {
 			crossShopBoundary = false;
 		}
 	}
+
+	public void Potion()
+	{
+		if(potionCount > 0 && health != maxHealth)
+		{
+
+			health += potionStrength;
+			--potionCount;
+
+		}
+		
+	
+}
 }

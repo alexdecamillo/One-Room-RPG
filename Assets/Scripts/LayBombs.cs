@@ -56,18 +56,10 @@ public class LayBombs : MonoBehaviour
 			bombTimer -= Time.deltaTime;
 		}
 		// If the bomb laying button is pressed, the bomb hasn't been laid and there's a bomb to lay...
-		if(Input.GetButtonDown("Fire2") && bombCount > 0 && bombReady == true && spawnManager.dayCycle == false)
+		
+		if(Input.GetButtonDown("Fire2"))
 		{
-			// Decrement the number of bombs.
-			bombCount--;
-
-			// Instantiate the bomb prefab.
-			instantiatedObj = Instantiate(bomb, target.transform.position, target.transform.rotation);
-
-			bombTimer = 5.0f;
-			bombLaid = true;
-			explodeBomb = 3.5f;
-
+			LayBomb();
 		}
 
 		if (bombLaid == true) {
@@ -87,7 +79,7 @@ public class LayBombs : MonoBehaviour
 		}
 
 		// The bomb heads up display should be enabled if the player has bombs, other it should be disabled.
-		bombHUD.text = bombCount + (" Bombs");
+		bombHUD.text = bombCount + "";
 	}
 
 	void BombExplosion()
@@ -96,5 +88,24 @@ public class LayBombs : MonoBehaviour
 			Debug.Log("Entered Function");
 	}
 
+	public void LayBomb()
+	{
+		if(bombCount > 0 && bombReady == true && spawnManager.dayCycle == false)
+		{
+			
+			// Decrement the number of bombs.
+			bombCount--;
+
+			// Instantiate the bomb prefab.
+			instantiatedObj = Instantiate(bomb, target.transform.position, target.transform.rotation);
 	
+
+			bombTimer = 5.0f;
+			bombLaid = true;
+			explodeBomb = 3.5f;
+
+		}
+		
+	
+}
 }
