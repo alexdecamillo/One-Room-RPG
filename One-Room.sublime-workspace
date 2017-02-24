@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Loa",
+				"LoadLevelAsync(string levelName)\tAsyncOperation"
+			],
+			[
+				"Unit",
+				"UnityEngine\tUnityEngine"
+			],
+			[
 				"in",
 				"inShop\tbool"
 			],
@@ -139,6 +147,24 @@
 			}
 		},
 		{
+			"file": "Assets/Scripts/Managers/TitleScreen.cs",
+			"settings":
+			{
+				"buffer_size": 506,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/UI/PauseMenu.cs",
+			"settings":
+			{
+				"buffer_size": 704,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "Assets/Scripts/Managers/SpawnManager.cs",
 			"settings":
 			{
@@ -229,6 +255,7 @@
 	],
 	"file_history":
 	[
+		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/UI/PauseMenu.cs",
 		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Enemies/Enemy.cs",
 		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Managers/LivingEntity.cs",
 		"/F/Unity Projects/One-Room-RPG/Assets/Scripts/Sword.cs",
@@ -277,7 +304,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -332,7 +359,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -374,10 +401,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1218.0,
+						"translation.y": 152.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -414,11 +441,85 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "Assets/Scripts/Managers/TitleScreen.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 506,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								230,
+								230
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"252,260": "Method 'ExitGame' can be made static.",
+								"26,31": "Using directive is not used by code and can be removed safely.",
+								"306,315": "Method 'StartGame' can be made static.",
+								"323,334": "'UnityEngine.Application.LoadLevelAsync' is obsolete",
+								"409,422": "Method 'StartPrologue' can be made static.",
+								"430,441": "'UnityEngine.Application.LoadLevelAsync' is obsolete",
+								"79,84": "Using directive is not used by code and can be removed safely."
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/Scripts/UI/PauseMenu.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								470,
+								470
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"588,595": "Method 'EndGame' can be made static.",
+								"655,666": "'UnityEngine.Application.LoadLevelAsync' is obsolete"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "Assets/Scripts/Managers/SpawnManager.cs",
 					"semi_transient": false,
 					"settings":
@@ -456,11 +557,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "Assets/Scripts/Managers/Spawner.cs",
 					"semi_transient": false,
 					"settings":
@@ -472,8 +573,8 @@
 						"selection":
 						[
 							[
-								1052,
-								1061
+								493,
+								493
 							]
 						],
 						"settings":
@@ -485,11 +586,11 @@
 						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "Assets/Scripts/Player/Player.cs",
 					"semi_transient": false,
 					"settings":
@@ -551,11 +652,11 @@
 						"translation.y": 888.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "Assets/Scripts/UI/HUD.cs",
 					"semi_transient": false,
 					"settings":
@@ -586,7 +687,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]

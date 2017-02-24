@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour {
 		if (paused) {
 			Time.timeScale = 0.0f;
 			gameObject.SetActive(true);
+
 		} else {
 			Resume();
 		}
@@ -38,7 +39,9 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	public void EndGame() {
-		Resume();
-		player.TakeDamage(float.MaxValue);
+		//Resume();
+		//player.TakeDamage(float.MaxValue);
+		Application.LoadLevelAsync("Title Screen");
 	}
+
 }
