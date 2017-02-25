@@ -1,0 +1,852 @@
+fileFormatVersion: 2
+guid: b2dbb6bc7847ea14a8f1cfc8bdc0cf49
+timeCreated: 1487997228
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpriteSheet_Enemy_0
+    21300002: SpriteSheet_Enemy_1
+    21300004: SpriteSheet_Enemy_2
+    21300006: SpriteSheet_Enemy_3
+    21300008: SpriteSheet_Enemy_4
+    21300010: SpriteSheet_Enemy_5
+    21300012: SpriteSheet_Enemy_6
+    21300014: SpriteSheet_Enemy_7
+    21300016: SpriteSheet_Enemy_9
+    21300018: SpriteSheet_Enemy_11
+    21300020: SpriteSheet_Enemy_12
+    21300022: SpriteSheet_Enemy_15
+    21300024: SpriteSheet_Enemy_16
+    21300026: SpriteSheet_Enemy_17
+    21300028: SpriteSheet_Enemy_18
+    21300030: SpriteSheet_Enemy_20
+    21300032: SpriteSheet_Enemy_21
+    21300034: SpriteSheet_Enemy_22
+    21300036: SpriteSheet_Enemy_23
+    21300038: SpriteSheet_Enemy_24
+    21300040: SpriteSheet_Enemy_26
+    21300042: SpriteSheet_Enemy_27
+    21300044: SpriteSheet_Enemy_28
+    21300046: SpriteSheet_Enemy_31
+    21300048: SpriteSheet_Enemy_33
+    21300050: SpriteSheet_Enemy_34
+    21300052: SpriteSheet_Enemy_35
+    21300054: SpriteSheet_Enemy_36
+    21300056: SpriteSheet_Enemy_37
+    21300058: SpriteSheet_Enemy_38
+    21300060: SpriteSheet_Enemy_39
+    21300062: SpriteSheet_Enemy_41
+    21300064: SpriteSheet_Enemy_44
+    21300066: SpriteSheet_Enemy_45
+    21300068: SpriteSheet_Enemy_46
+    21300070: SpriteSheet_Enemy_47
+    21300072: SpriteSheet_Enemy_48
+    21300074: SpriteSheet_Enemy_49
+    21300076: SpriteSheet_Enemy_50
+    21300078: SpriteSheet_Enemy_51
+    21300080: SpriteSheet_Enemy_52
+    21300082: SpriteSheet_Enemy_53
+    21300084: SpriteSheet_Enemy_54
+    21300086: SpriteSheet_Enemy_55
+    21300088: SpriteSheet_Enemy_56
+    21300090: SpriteSheet_Enemy_57
+    21300092: SpriteSheet_Enemy_58
+    21300094: SpriteSheet_Enemy_59
+    21300096: SpriteSheet_Enemy_60
+    21300098: SpriteSheet_Enemy_61
+    21300100: SpriteSheet_Enemy_63
+    21300102: SpriteSheet_Enemy_64
+    21300104: SpriteSheet_Enemy_65
+    21300106: SpriteSheet_Enemy_66
+    21300108: SpriteSheet_Enemy_67
+    21300110: SpriteSheet_Enemy_68
+    21300112: SpriteSheet_Enemy_69
+    21300114: SpriteSheet_Enemy_73
+    21300116: SpriteSheet_Enemy_74
+    21300118: SpriteSheet_Enemy_75
+    21300120: SpriteSheet_Enemy_8
+    21300122: SpriteSheet_Enemy_10
+    21300124: SpriteSheet_Enemy_13
+    21300126: SpriteSheet_Enemy_14
+    21300128: SpriteSheet_Enemy_19
+    21300130: SpriteSheet_Enemy_25
+    21300132: SpriteSheet_Enemy_29
+    21300134: SpriteSheet_Enemy_30
+    21300136: SpriteSheet_Enemy_32
+    21300138: SpriteSheet_Enemy_40
+    21300140: SpriteSheet_Enemy_42
+    21300142: SpriteSheet_Enemy_43
+    21300144: SpriteSheet_Enemy_62
+    21300146: SpriteSheet_Enemy_70
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1000
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_0
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 11651
+        width: 591
+        height: 872
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_1
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 11658
+        width: 893
+        height: 914
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_2
+      rect:
+        serializedVersion: 2
+        x: 2801
+        y: 11639
+        width: 1011
+        height: 951
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_3
+      rect:
+        serializedVersion: 2
+        x: 3929
+        y: 11602
+        width: 1078
+        height: 977
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_4
+      rect:
+        serializedVersion: 2
+        x: 5162
+        y: 11543
+        width: 844
+        height: 912
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_7
+      rect:
+        serializedVersion: 2
+        x: 7023
+        y: 11719
+        width: 585
+        height: 872
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_9
+      rect:
+        serializedVersion: 2
+        x: 6173
+        y: 11525
+        width: 655
+        height: 893
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_11
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 10719
+        width: 591
+        height: 872
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_12
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 10714
+        width: 591
+        height: 928
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_15
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 9783
+        width: 592
+        height: 872
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_16
+      rect:
+        serializedVersion: 2
+        x: 1827
+        y: 9777
+        width: 592
+        height: 909
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_17
+      rect:
+        serializedVersion: 2
+        x: 2537
+        y: 9802
+        width: 591
+        height: 872
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_18
+      rect:
+        serializedVersion: 2
+        x: 3239
+        y: 9783
+        width: 585
+        height: 909
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_20
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 8858
+        width: 616
+        height: 811
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_21
+      rect:
+        serializedVersion: 2
+        x: 2173
+        y: 8867
+        width: 625
+        height: 825
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_22
+      rect:
+        serializedVersion: 2
+        x: 6219
+        y: 8877
+        width: 618
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_24
+      rect:
+        serializedVersion: 2
+        x: 6965
+        y: 8970
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_26
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 7697
+        width: 671
+        height: 835
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_31
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 6533
+        width: 664
+        height: 905
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_33
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 5389
+        width: 611
+        height: 831
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_34
+      rect:
+        serializedVersion: 2
+        x: 2248
+        y: 5383
+        width: 652
+        height: 865
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_35
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 5345
+        width: 892
+        height: 952
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_36
+      rect:
+        serializedVersion: 2
+        x: 4167
+        y: 5323
+        width: 785
+        height: 943
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_37
+      rect:
+        serializedVersion: 2
+        x: 5058
+        y: 5316
+        width: 785
+        height: 852
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_38
+      rect:
+        serializedVersion: 2
+        x: 5889
+        y: 5294
+        width: 757
+        height: 886
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_41
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 4198
+        width: 674
+        height: 914
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_44
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 2984
+        width: 639
+        height: 920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_45
+      rect:
+        serializedVersion: 2
+        x: 3069
+        y: 3002
+        width: 635
+        height: 915
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_46
+      rect:
+        serializedVersion: 2
+        x: 3857
+        y: 2993
+        width: 666
+        height: 931
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_61
+      rect:
+        serializedVersion: 2
+        x: 4524
+        y: 3144
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_63
+      rect:
+        serializedVersion: 2
+        x: 1377
+        y: 1980
+        width: 690
+        height: 779
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_64
+      rect:
+        serializedVersion: 2
+        x: 2197
+        y: 1997
+        width: 770
+        height: 836
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_65
+      rect:
+        serializedVersion: 2
+        x: 3017
+        y: 1973
+        width: 819
+        height: 903
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_66
+      rect:
+        serializedVersion: 2
+        x: 4022
+        y: 1945
+        width: 856
+        height: 918
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_67
+      rect:
+        serializedVersion: 2
+        x: 5069
+        y: 1954
+        width: 690
+        height: 804
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_68
+      rect:
+        serializedVersion: 2
+        x: 6043
+        y: 1945
+        width: 647
+        height: 844
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_69
+      rect:
+        serializedVersion: 2
+        x: 7088
+        y: 1936
+        width: 582
+        height: 822
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_73
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 158
+        width: 690
+        height: 825
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_74
+      rect:
+        serializedVersion: 2
+        x: 3122
+        y: 88
+        width: 689
+        height: 901
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_75
+      rect:
+        serializedVersion: 2
+        x: 3997
+        y: 97
+        width: 688
+        height: 898
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_8
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 8867
+        width: 719
+        height: 835
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_10
+      rect:
+        serializedVersion: 2
+        x: 3671
+        y: 8858
+        width: 768
+        height: 844
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_13
+      rect:
+        serializedVersion: 2
+        x: 4621
+        y: 8858
+        width: 710
+        height: 815
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_14
+      rect:
+        serializedVersion: 2
+        x: 5446
+        y: 8877
+        width: 671
+        height: 796
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_19
+      rect:
+        serializedVersion: 2
+        x: 2199
+        y: 7772
+        width: 633
+        height: 843
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_25
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 6541
+        width: 642
+        height: 934
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_29
+      rect:
+        serializedVersion: 2
+        x: 2957
+        y: 6548
+        width: 612
+        height: 883
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_30
+      rect:
+        serializedVersion: 2
+        x: 3749
+        y: 6548
+        width: 649
+        height: 890
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_32
+      rect:
+        serializedVersion: 2
+        x: 6776
+        y: 5319
+        width: 674
+        height: 885
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_40
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 4172
+        width: 604
+        height: 858
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_42
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 3063
+        width: 657
+        height: 920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_43
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 1087
+        width: 674
+        height: 884
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_62
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 88
+        width: 683
+        height: 937
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteSheet_Enemy_70
+      rect:
+        serializedVersion: 2
+        x: 2290
+        y: 1113
+        width: 665
+        height: 867
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
