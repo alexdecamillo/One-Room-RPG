@@ -115,8 +115,6 @@ public class SpawnManager : MonoBehaviour {
 		round++;
 		roundComplete = true;
 		dayCycle = true;
-		//player.dayLight.enabled = false;
-		//player.plane.SetActive (false);
 		player.cycle.SetActive (false);
 		if(RoundChange != null) RoundChange();
 	}

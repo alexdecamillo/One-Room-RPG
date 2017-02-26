@@ -2,39 +2,46 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 public class Enemy : LivingEntity {
 
 	public enum State {Chasing, Attacking};
 	State currentState;
-	public float speed;
-	public Sword sword;
+
+    public float speed;
+	public float damage;
+	public float knockPwr;
 
 	float timeToUpdate = 0;
 	float updateTime = .1f;
-	float damage = 10;
-	float attackDistanceThreshold = 1.0f;
-	float chaseDistanceThreshold = 20.0f;
+    Vector3 velocity;
+
+    float attackDistanceThreshold = 1f;
+    float attDist;
 	float timeBetweenAttacks = 1;
 	float nextAttackTime;
-	public float knockPwr;
 
-	bool stunned = false;
+    bool stunned = false;
 	float knockTime = .1f;
 	float knockTimer;
-	Player player;
-	Transform target;
+
 	LivingEntity targetEntity;
+	Transform target;
+
+    Animator anim;
 
 	public virtual void Start(){
 		base.Start ();
-		target = GameObject.FindGameObjectWithTag ("Player").transform;
-		targetEntity = target.GetComponent<LivingEntity>();
-		player = FindObjectOfType<Player>();
-		sword = FindObjectOfType<Sword>();
-	}
+        targetEntity = FindObjectOfType<Player>();
+        target = targetEntity.transform;
+        anim = GetComponent<Animator>();
+        attDist = Mathf.Pow (attackDistanceThreshold, 2);
+        Physics.IgnoreCollision(FindObjectOfType<Player>().GetComponent<BoxCollider>(), GetComponent<BoxCollider>());
+    }
 
 	void Update(){
-		if (player != null && !stunned) {
+        // If enemy gets hit, wait knockTime until moving again
+		if (targetEntity != null && !stunned) {
 			MoveToPlayer ();
 		}
 
@@ -49,34 +56,60 @@ public class Enemy : LivingEntity {
 	}
 
 	void MoveToPlayer(){
+        // Finds distance to the target
 		float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
-		float chaseDist = Mathf.Pow (chaseDistanceThreshold, 2);
-		float attDist = Mathf.Pow (attackDistanceThreshold, 2);
 
-		if(attDist <= sqrDstToTarget && sqrDstToTarget <= chaseDist)
+        // Sets state based on attack threshold
+        if (attDist <= sqrDstToTarget)
 		{
 			currentState = State.Chasing;
+            anim.SetBool("attacking", false);
 		}
+        else
+        {
+            currentState = State.Attacking;
+        }
 
-		if (Time.time > nextAttackTime) 
-		{
-
-			if (sqrDstToTarget < attDist) 
-			{
-				currentState = State.Attacking;
-				nextAttackTime = Time.time + timeBetweenAttacks;
-				StartCoroutine (Attack ());
+        // Attacks or chases based on state
+        if (currentState == State.Attacking)
+        {
+            if (Time.time > nextAttackTime)
+            {
+                anim.SetBool("attacking", true);
+                nextAttackTime = Time.time + timeBetweenAttacks;
+                targetEntity.TakeDamage(damage);
+                //StartCoroutine(Attack()); 
+            }
+            else
+                anim.SetBool("attacking", false);
+        }
+        else if (currentState == State.Chasing)
+        {
+            if (Time.time > timeToUpdate)
+            {
+                velocity = new Vector3((target.position.x - transform.position.x) * speed, 0, (target.position.z - transform.position.z) * speed);
+                timeToUpdate = Time.time + updateTime;
 			}
-		}
+            GetComponent<Rigidbody>().velocity = velocity;
+        }
 
-		if (currentState == State.Chasing) {
-			if (Time.time > timeToUpdate) {
-				transform.LookAt (target.transform);
-				transform.Rotate (new Vector3 (0, -90, 0), Space.Self);
-				timeToUpdate = Time.time + updateTime;
-			}
-			transform.Translate (new Vector3 (speed * Time.deltaTime, 0, 0));
-		}
+        // Finds direction that the enemy is moving for animator
+        int dir;
+        if (Mathf.Abs(velocity.z) > Mathf.Abs(velocity.x))
+        {
+            if (velocity.z > 0)
+                dir = 1;
+            else
+                dir = 0;
+        }
+        else
+        {
+            if (velocity.x > 0)
+                dir = 3;
+            else
+                dir = 2;
+        }
+        anim.SetInteger("direction", dir);
 	}
 
 	IEnumerator Attack() 
@@ -97,8 +130,8 @@ public class Enemy : LivingEntity {
 			}
 
 			percent += Time.deltaTime * attackSpeed;
-			float interpolation = (-Mathf.Pow (percent, 2) + percent) * 4;
-			transform.position = Vector3.Lerp (originalPosition, attackPosition, interpolation);
+			//float interpolation = (-Mathf.Pow (percent, 2) + percent) * 4;
+			//transform.position = Vector3.Lerp (originalPosition, attackPosition, interpolation);
 
 			yield return null;
 		}
@@ -122,6 +155,7 @@ public class Enemy : LivingEntity {
 			
 		yield return 0;
 	}
+
 	void OnTriggerEnter(Collider col) {
 		if (col.tag == "Bomb") {
 			SendMessage("TakeDamage", damage);

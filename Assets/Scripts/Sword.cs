@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour {
 
+    public event System.Action swingUpdate;
+
 	public bool attacking = false;
-	Vector3 velocity;
 
 	public float damage;
 
-	public float swingTimer;
 	public float swingCD;
+	float swingTimer;
 
-	SpawnManager spawner;
 	BoxCollider hitBox;
 
 	void Start () {
 		hitBox = GetComponent<BoxCollider>();
 		hitBox.enabled = false;
-		spawner = FindObjectOfType<SpawnManager>();
 	}
 
 	void Update() {
 
-		if (Input.GetButtonDown("Fire1") && !attacking && spawner.dayCycle == false) {
+		if (Input.GetButtonDown("Fire1") && !attacking) {
 			attacking = true;
 			swingTimer = swingCD;
 			hitBox.enabled = true;

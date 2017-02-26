@@ -25,7 +25,6 @@ public class Player : LivingEntity {
 	Sword sword;
 	PlayerController controller;
 	Player player;	
-	Camera viewCamera;
 	Animator anim;
 	SpawnManager spawner;
 
@@ -44,117 +43,91 @@ public class Player : LivingEntity {
 		base.Start();
 		cycle.SetActive (false);
 		controller = GetComponent<PlayerController>();
-		viewCamera = Camera.main;
 		anim = GetComponent<Animator> ();
 		spawner = FindObjectOfType<SpawnManager>();
 		dayLight = FindObjectOfType<Light>();
 		sword = GetComponentInChildren <Sword> ();
 		Shop.enabled = false;
+        sword.swingUpdate += Sword_swing;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (health > maxHealth)
-		{
-			health = maxHealth;
-		}
 
-		if (!paused) {
-			// Movement input
-			Vector3 moveInput = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical"));
-			Vector3 moveVeloctiy = moveInput.normalized * moveSpeed;
-			controller.Move (moveVeloctiy);
-			
-			// Look input
-			Ray ray = viewCamera.ScreenPointToRay (Input.mousePosition);
-			Plane groundPlane = new Plane (Vector3.up, Vector3.zero);
-			float rayDistance;
+    private void Sword_swing()
+    {
+        
+    }
 
-			/*
-			if (groundPlane.Raycast (ray, out rayDistance)) {
-				Vector3 point = ray.GetPoint (rayDistance);
-				//Debug.DrawLine(ray.origin, point, Color.red);
-				//controller.LookAt (point);
-			}
+    // Update is called once per frame
+    void Update () {
+        if (!paused) {
+            // Movement input
+            Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            Vector3 moveVeloctiy = moveInput.normalized * moveSpeed;
+            controller.Move(moveVeloctiy);
 
-			if (Input.GetButtonDown("Fire1") && !attacking) {
-				attacking = true;
-				swingTimer = swingCD;
-			}
+            if (crossBoundary == true && Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("E pressed");
+                spawner.dayCycle = false;
+                cycle.SetActive(true);
+            }
 
-			if (attacking) {
-				if (swingTimer > 0) {
-					swingTimer -= Time.deltaTime;
-				}
-				else {
-					attacking = false;
-				}
-			}
-			*/
+            if (inShop == true && crossShopBoundary == false)
+            {
+                Shop.enabled = false;
+            }
 
-			if (crossBoundary == true && Input.GetKeyDown (KeyCode.E)) {
-				Debug.Log ("E pressed");
-				spawner.dayCycle = false;
-				cycle.SetActive (true);
-				//dayLight.enabled = true;
-				//plane.SetActive (true);
-			}
-			if (inShop == true && crossShopBoundary == false)
-			{
-				Shop.enabled = false;
-			}
-			if (crossShopBoundary == true && inShop == false && Input.GetKeyDown (KeyCode.E)) {
-				 inShop = true;
-				 Shop.enabled = true;
-				 Debug.Log ("Shop pressed");
-		}
-			 
-			else if (inShop == true && Input.GetKeyDown(KeyCode.E)){
-				Shop.enabled = false;
-				inShop = false;
-			}
-			
-			// handle animations
-			if (moveInput.z < 0)
-				direction = 0;	// foward
-			else if (moveInput.z > 0)
-				direction = 1;	// back
+            if (crossShopBoundary == true && inShop == false && Input.GetKeyDown(KeyCode.E)) {
+                inShop = true;
+                Shop.enabled = true;
+                Debug.Log("Shop pressed");
+            }
+            else if (inShop == true && Input.GetKeyDown(KeyCode.E))
+            {
+                Shop.enabled = false;
+                inShop = false;
+            }
 
-			if (moveInput.x < 0)
-				direction = 2;	// left
-			else if (moveInput.x > 0)
-				direction = 3;	// right
+            // handle sword and player direction
+            if (moveInput.z < 0)        // foward
+            {
+                direction = 0;
+                sword.transform.localPosition = new Vector3(0, -0.6f, 0);
+            }
+            else if (moveInput.z > 0)   // back
+            { 
+                direction = 1;
+                sword.transform.localPosition = new Vector3(0, 0.6f, 0);
+            }
 
-			Debug.Log (direction);
-			anim.SetFloat ("speed", moveInput.magnitude);
+            if (moveInput.x < 0)        // left
+            {
+                direction = 2;
+                sword.transform.localPosition = new Vector3(-0.6f, 0, 0);
+            }
+            else if (moveInput.x > 0)   // right
+            {
+                direction = 3;
+                sword.transform.localPosition = new Vector3(0.6f, 0, 0);
+            }
+
+            // animations
+            anim.SetFloat ("speed", moveInput.magnitude);
 			anim.SetInteger ("direction", direction);
-			anim.SetBool ("attacking", sword.attacking);
-
-			/*
-			if (direction == 0){
-				sword.transform.position.Set (0,-.7f,0);
-				sword.transform.localRotation.Set (0,0,0,0);
-			} else if (direction == 1){
-				sword.transform.position.Set (0,.7f,0);
-				sword.transform.localRotation.Set (0,0,0,0);
-			} else if (direction == 2){
-				sword.transform.position.Set (-.7f,0,0);
-				sword.transform.localRotation.Set (0,0,90,0);
-			} else {
-				sword.transform.position.Set (.7f,0,0);
-				sword.transform.localRotation.Set (0,0,90,0);
-			}
-			*/
-		} 
+            anim.SetBool("attacking", sword.attacking);
+        }
 
 		if(Input.GetKeyDown(KeyCode.Alpha1))
-		{	
-			Potion();
-		}
+            Potion();
+
+		if (health > maxHealth)
+            health = maxHealth;
+
 		// pause controller
-		if (Input.GetKeyDown(KeyCode.Escape)) {
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
 			paused = !paused;
-			if (OnPause != null) {
+			if (OnPause != null)
+            {
 				OnPause();
 			}
 		}
@@ -178,22 +151,26 @@ public class Player : LivingEntity {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (col.tag == "Bed" && spawner.dayCycle == true) {
+		if (col.tag == "Bed" && spawner.dayCycle == true)
+        {
 			activeBed.text = ("Press E to go to sleep");
 			crossBoundary = true;
 		}
-		if (col.tag == "Shop" && spawner.dayCycle == true && inShop == false) {
+		if (col.tag == "Shop" && spawner.dayCycle == true && inShop == false)
+        {
 			activeBed.text = ("Press E to shop");
 			crossShopBoundary = true;
 		}
 	}
 
 	void OnTriggerExit(Collider col) {
-		if (col.tag == "Bed") {
+		if (col.tag == "Bed")
+        {
 			activeBed.text = ("");
 			crossBoundary = false;
 		}
-		if (col.tag == "Shop") {
+		if (col.tag == "Shop")
+        {
 			activeBed.text = ("");
 			crossShopBoundary = false;
 		}
@@ -201,14 +178,11 @@ public class Player : LivingEntity {
 
 	public void Potion()
 	{
-		if(potionCount > 0 && health != maxHealth)
-		{
+        if (potionCount > 0 && health != maxHealth)
+        {
+            health += potionStrength;
+            --potionCount;
+        }
+    }
 
-			health += potionStrength;
-			--potionCount;
-
-		}
-		
-	
-}
 }
