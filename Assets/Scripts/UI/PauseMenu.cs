@@ -8,12 +8,14 @@ public class PauseMenu : MonoBehaviour {
 	Player player;
 	Sword sword;
 	public Text stats;
+	public GameObject panel;
 
 	void Start () {
 		player = FindObjectOfType<Player>();
 		sword = FindObjectOfType<Sword>();
 		player.OnPause += Pause;
 		gameObject.SetActive(false);
+		panel.SetActive(false);		
 	}
 
 	void Update()
@@ -45,6 +47,18 @@ public class PauseMenu : MonoBehaviour {
 
 	public void Settings() {
 
+	}
+
+	public void Controls()
+	{
+		if(panel.activeSelf)
+		{
+			panel.SetActive(false);	
+		}
+		if(panel.activeSelf  == false)
+		{
+		//panel.SetActive(true);
+	}
 	}
 
 	public void EndGame() {

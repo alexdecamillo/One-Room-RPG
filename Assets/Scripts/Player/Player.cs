@@ -133,6 +133,7 @@ public class Player : LivingEntity {
 
 		healthHUD.text = potionCount + "";
 		healthBar.value = health;
+		healthBar.maxValue = maxHealth;
 	}
 
 	public void AddPoints(int points) {

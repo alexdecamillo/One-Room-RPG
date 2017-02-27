@@ -57,6 +57,7 @@ namespace CompleteProject
 
 				player.points -= statUpgradePrice;
 				player.maxHealth += 10;
+				player.healthBar.maxValue += 10;
 			}/* else 
 			{
 				//warning.text = ("Not enough points!");

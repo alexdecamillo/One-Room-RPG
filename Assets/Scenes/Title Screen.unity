@@ -1061,6 +1061,7 @@ GameObject:
   - component: {fileID: 1377039671}
   - component: {fileID: 1377039670}
   - component: {fileID: 1377039674}
+  - component: {fileID: 1377039675}
   m_Layer: 5
   m_Name: TitleScreen
   m_TagString: Title
