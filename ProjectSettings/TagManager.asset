@@ -9,6 +9,10 @@ TagManager:
   - Shop
   - Bomb
   - Class
+  - Flash
+  - Room
+  - Credits
+  - Title
   layers:
   - Default
   - TransparentFX

@@ -20,8 +20,10 @@ public class Spawner : MonoBehaviour {
 	int enemiesRemainingToSpawn;
 	int enemiesRemainingAlive;
 	float nextSpawnTime;
+    private float animSpawn;
+    bool shouldAnim = true;
 
-	bool RoundCheck() {
+    bool RoundCheck() {
 		if (manager.GetRoundComplete()) return true;
 		else return false;
 	}
@@ -40,15 +42,26 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void Update() {
-		if (enemiesRemainingToSpawn > 0 && Time.time > nextSpawnTime && Time.time > currentWave.delay) {
-			FindSpawnPoint();
-			enemiesRemainingToSpawn--;
-			nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
+        if (enemiesRemainingToSpawn > 0 && Time.time > animSpawn && Time.time > currentWave.delay)
+        {
+            int point = FindSpawnPoint();
+            if (shouldAnim)
+            {
+                GameObject.FindGameObjectWithTag("Flash").GetComponent<Animator>().SetTrigger("spawn");
+                shouldAnim = false;
+            }
+            if (enemiesRemainingToSpawn > 0 && Time.time > nextSpawnTime && Time.time > currentWave.delay)
+            {
+                enemiesRemainingToSpawn--;
+                nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
+                animSpawn = nextSpawnTime - 0.75f;
 
-			Enemy spawnedEnemy = Instantiate(spawn, spawnPoint.position, Quaternion.identity) as Enemy;
-			spawnedEnemy.OnDeath += OnEnemyDeath;
-		}
-		else if (enemiesRemainingAlive == 0 && currentWaveNumber != waves.Length) {
+                Enemy spawnedEnemy = Instantiate(spawn, spawnPoint.position, Quaternion.Euler(90, 0, 0)) as Enemy;
+                spawnedEnemy.OnDeath += OnEnemyDeath;
+                shouldAnim = true;
+            }
+        }
+        else if (enemiesRemainingAlive == 0 && currentWaveNumber != waves.Length) {
 			NextWave();
 		}
 		if (RoundCheck()) {
@@ -86,15 +99,16 @@ public class Spawner : MonoBehaviour {
 		}
 	}
 
-	void FindSpawnPoint() {
+	int FindSpawnPoint() {
 		int point = Random.Range(0, spawners.Length);
 		spawnPoint = spawners[point];
-	}
+        return point;
+    }
 
 	void SetWaves() {
 		Debug.Log("Waves set");
 		waves = manager.GetWaves();
-		currentWaveNumber = 0;
+        currentWaveNumber = 0;
 	}
 
 	//[System.Serializable]

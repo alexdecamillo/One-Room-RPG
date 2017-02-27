@@ -8,6 +8,9 @@ public class TitleScreen : MonoBehaviour {
 	[HideInInspector]
      public string sceneName;
 
+    public GameObject title;
+    public GameObject credits;
+
 	void Update()
 	{
 		// Create a temporary reference to the current scene.
@@ -29,30 +32,32 @@ public class TitleScreen : MonoBehaviour {
 
 	public void ExitGame()
 	{
-		 Application.Quit();
+		Application.Quit();
 	}
 
 	public void StartGame()
 	{
-	 Application.LoadLevelAsync("Scene1");
-	 Debug.Log("object message");
+	    Application.LoadLevelAsync("Scene1");
 	}
 
 	public void StartPrologue()
 	{
-	 Application.LoadLevelAsync("Prologue");
+	    Application.LoadLevelAsync("Prologue");
 	}
 
 	public void StartMenu()
 	{
-		if(sceneName == "Prologue" || sceneName == "Credits"){
-	 Application.LoadLevelAsync("Title Screen");
-	}
+        //GameObject.FindGameObjectWithTag("Credits").SetActive(false);
+        //GameObject.FindGameObjectWithTag("Title").SetActive(true);
+        credits.SetActive(false);
+        title.SetActive(true);
 	}
 
 	public void StartCredits()
 	{
-	 Application.LoadLevelAsync("Credits");
-	 //Debug.Log("object message");
-	}
+        //GameObject.FindGameObjectWithTag("Credits").SetActive(true);
+        //GameObject.FindGameObjectWithTag("Title").SetActive(false);
+        credits.SetActive(true);
+        title.SetActive(false);
+    }
 }

@@ -19,10 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4740401663624104}
-  - component: {fileID: 114965179054817638}
   - component: {fileID: 54717683531819424}
   - component: {fileID: 212187010605934850}
   - component: {fileID: 135519171786941342}
+  - component: {fileID: 114851261314326340}
+  - component: {fileID: 95992138987183226}
   m_Layer: 0
   m_Name: bomb
   m_TagString: Bomb
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1060933244913978}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -4.33, y: 0.11, z: -3.87}
+  m_LocalPosition: {x: -0.37, y: 0.11, z: -0.38}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,7 +59,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
---- !u!114 &114965179054817638
+--- !u!95 &95992138987183226
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1060933244913978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 64343b6e6dd6c4642b0fdca5732a6393, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114851261314326340
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,9 +84,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060933244913978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bad2d63f5a35e47a395639fd43bf75, type: 3}
+  m_Script: {fileID: 11500000, guid: 595e00adf14ce634d9523c579c2dffe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
+  explosionTime: 2
 --- !u!135 &135519171786941342
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -77,9 +97,9 @@ SphereCollider:
   m_GameObject: {fileID: 1060933244913978}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212187010605934850
 SpriteRenderer:

@@ -30,10 +30,11 @@ public class SpawnManager : MonoBehaviour {
 	}
 
 	void Update() {
-			if (waveSet) {
-				roundComplete = false;
-				waveSet = false;
-			}
+		if (waveSet)
+        {
+			roundComplete = false;
+			waveSet = false;
+		}
 	}
 
 	// sets enemies for each wave and waves for each round
@@ -115,9 +116,9 @@ public class SpawnManager : MonoBehaviour {
 		round++;
 		roundComplete = true;
 		dayCycle = true;
-		player.cycle.SetActive (false);
-		if(RoundChange != null) RoundChange();
-	}
+        FindObjectOfType<DayCycle>().SetDay();
+        if(RoundChange!=null)RoundChange();
+    }
 
 	public int GetRoundNum() {
 		return round + 1;

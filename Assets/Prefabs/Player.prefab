@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 212371867968344934}
   - component: {fileID: 95464969885252124}
   - component: {fileID: 65269262679342608}
+  - component: {fileID: 114021201309287624}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -132,6 +133,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114021201309287624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935023252209914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c74af7a0320ffd4fb925f9def20e561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bomb: {fileID: 1060933244913978, guid: e868eca6e74242c4a8439994b637e2b6, type: 2}
 --- !u!114 &114538007555759926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +193,7 @@ MonoBehaviour:
   paused: 0
   points: 0
   potionCount: 10
-  dayLight: {fileID: 0}
+  bombCount: 1
   Shop: {fileID: 0}
   plane: {fileID: 0}
   cycle: {fileID: 0}

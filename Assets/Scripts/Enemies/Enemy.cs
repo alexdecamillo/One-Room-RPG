@@ -41,17 +41,15 @@ public class Enemy : LivingEntity {
 
 	void Update(){
         // If enemy gets hit, wait knockTime until moving again
-		if (targetEntity != null && !stunned) {
+		if (targetEntity != null && !stunned)
 			MoveToPlayer ();
-		}
 
-		if(stunned){
-			if (knockTimer > 0) {
+		if(stunned)
+        {
+			if (knockTimer > 0)
 				knockTimer -= Time.deltaTime;
-			}
-			else {
+			else
 				stunned = false;
-			}	
 		}
 	}
 
@@ -112,31 +110,6 @@ public class Enemy : LivingEntity {
         anim.SetInteger("direction", dir);
 	}
 
-	IEnumerator Attack() 
-	{
-		bool hasAppliedDamage = false;
-		Vector3 originalPosition = transform.position;
-		Vector3 attackPosition = target.position;
-
-		float attackSpeed = 3;
-		float percent = 0;
-
-		while(percent <= 1)
-		{
-			if(percent >= .5f && !hasAppliedDamage)
-			{
-				hasAppliedDamage = true;
-				targetEntity.TakeDamage(damage);
-			}
-
-			percent += Time.deltaTime * attackSpeed;
-			//float interpolation = (-Mathf.Pow (percent, 2) + percent) * 4;
-			//transform.position = Vector3.Lerp (originalPosition, attackPosition, interpolation);
-
-			yield return null;
-		}
-	}
-
 	public void Knockback(){
 		StartCoroutine (Knockback(1f, knockPwr /*.02f*/));
 		stunned = true;
@@ -146,20 +119,12 @@ public class Enemy : LivingEntity {
 	public IEnumerator Knockback(float knockDur, float knockbackPwr)
 	{
 		float timer = 0;
-
 		while (knockDur > timer) 
 		{
 			timer += Time.deltaTime;
 			transform.Translate (new Vector3 (-knockbackPwr, 0, 0));
 		}
-			
 		yield return 0;
 	}
-
-	void OnTriggerEnter(Collider col) {
-		if (col.tag == "Bomb") {
-			SendMessage("TakeDamage", damage);
-			//SendMessage ("Knockback");
-		}
-	}
+    
 }

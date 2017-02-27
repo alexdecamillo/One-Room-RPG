@@ -5,7 +5,6 @@ public class HUD : MonoBehaviour {
 
 	int round;
 	Text[] displayText;
-	public Text cycleIndic;
 
 	SpawnManager spawner;
 	Player player;
@@ -18,20 +17,7 @@ public class HUD : MonoBehaviour {
 		spawner.RoundChange += UpdateRound;
 		player.TookDamage += UpdatePlayerHealth;
 		player.PointChange += UpdateScore;
-//		Debug.Log ("Subscriptions");
 		displayText = GetComponentsInChildren<Text>();
-	}
-
-	void Update(){
-
-		if (spawner.dayCycle == true) {
-			cycleIndic.text = ("Day");
-		
-		} 
-		else if (spawner.dayCycle == false) {
-			cycleIndic.text = ("Night");
-		}
-	
 	}
 
 	void UpdateRound() {
@@ -44,7 +30,6 @@ public class HUD : MonoBehaviour {
 	}
 
 	void UpdateScore() {
-		Debug.Log ("Update Score");
-		displayText[0].text = "Score: " + player.GetPoints();
+        displayText[0].text = "Score: " + player.GetPoints();
 	}
 }

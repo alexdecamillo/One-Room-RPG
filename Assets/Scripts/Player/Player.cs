@@ -21,6 +21,7 @@ public class Player : LivingEntity {
 	public int points = 0;
 	int direction = 0;
 	public int potionCount = 0;
+    public int bombCount = 1;
 
 	Sword sword;
 	PlayerController controller;
@@ -28,7 +29,6 @@ public class Player : LivingEntity {
 	Animator anim;
 	SpawnManager spawner;
 
-	public Light dayLight;
 	public Canvas Shop;
 	public GameObject plane;
 	public GameObject cycle;
@@ -41,20 +41,12 @@ public class Player : LivingEntity {
 	// Use this for initialization
 	public virtual void Start () {
 		base.Start();
-		cycle.SetActive (false);
+		Shop.enabled = false;
 		controller = GetComponent<PlayerController>();
 		anim = GetComponent<Animator> ();
 		spawner = FindObjectOfType<SpawnManager>();
-		dayLight = FindObjectOfType<Light>();
 		sword = GetComponentInChildren <Sword> ();
-		Shop.enabled = false;
-        sword.swingUpdate += Sword_swing;
 	}
-
-    private void Sword_swing()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update () {
@@ -64,24 +56,33 @@ public class Player : LivingEntity {
             Vector3 moveVeloctiy = moveInput.normalized * moveSpeed;
             controller.Move(moveVeloctiy);
 
-            if (crossBoundary == true && Input.GetKeyDown(KeyCode.E))
+            // Bomb laying
+            if (Input.GetButtonDown("Fire2"))
             {
-                Debug.Log("E pressed");
-                spawner.dayCycle = false;
-                cycle.SetActive(true);
+                // Check if there is a bomb and one can be laid
+                if ((bombCount > 0) && GetComponentInChildren<LayBombs>().LayBomb())
+                    bombCount--;
+                else
+                { }// Clunk sound??
             }
 
-            if (inShop == true && crossShopBoundary == false)
+            if (crossBoundary && Input.GetKeyDown(KeyCode.E))
+            {
+                spawner.dayCycle = false;
+                FindObjectOfType<DayCycle>().SetNight();
+            }
+
+            if (inShop && !crossShopBoundary)
             {
                 Shop.enabled = false;
             }
 
-            if (crossShopBoundary == true && inShop == false && Input.GetKeyDown(KeyCode.E)) {
+            if (crossShopBoundary && !inShop && Input.GetKeyDown(KeyCode.E)) {
                 inShop = true;
                 Shop.enabled = true;
                 Debug.Log("Shop pressed");
             }
-            else if (inShop == true && Input.GetKeyDown(KeyCode.E))
+            else if (inShop && Input.GetKeyDown(KeyCode.E))
             {
                 Shop.enabled = false;
                 inShop = false;
@@ -127,9 +128,7 @@ public class Player : LivingEntity {
         {
 			paused = !paused;
 			if (OnPause != null)
-            {
 				OnPause();
-			}
 		}
 
 		healthHUD.text = potionCount + "";
@@ -150,13 +149,22 @@ public class Player : LivingEntity {
 		return points;
 	}
 
+	public void Potion()
+	{
+        if ((potionCount > 0) && (health != maxHealth))
+        {
+            health += potionStrength;
+            --potionCount;
+        }
+    }
+
 	void OnTriggerEnter(Collider col) {
-		if (col.tag == "Bed" && spawner.dayCycle == true)
+		if ((col.tag == "Bed") && spawner.dayCycle)
         {
 			activeBed.text = ("Press E to go to sleep");
 			crossBoundary = true;
 		}
-		if (col.tag == "Shop" && spawner.dayCycle == true && inShop == false)
+		if ((col.tag == "Shop") && spawner.dayCycle && !inShop)
         {
 			activeBed.text = ("Press E to shop");
 			crossShopBoundary = true;
@@ -175,14 +183,5 @@ public class Player : LivingEntity {
 			crossShopBoundary = false;
 		}
 	}
-
-	public void Potion()
-	{
-        if (potionCount > 0 && health != maxHealth)
-        {
-            health += potionStrength;
-            --potionCount;
-        }
-    }
 
 }

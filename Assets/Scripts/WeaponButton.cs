@@ -30,7 +30,7 @@ namespace CompleteProject
 			if (player.points >= bombPrice) {
 
 				player.points -= bombPrice;
-				++bombs.bombCount;
+				++player.bombCount;
 				Debug.Log("bought a bomb");
 			} /*else 
 			{
