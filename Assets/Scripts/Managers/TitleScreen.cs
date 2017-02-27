@@ -19,7 +19,7 @@ public class TitleScreen : MonoBehaviour {
          sceneName = currentScene.name;
 
 
-		if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && (sceneName == "Prologue"))
 		{
 			StartGame();
 		}
@@ -37,26 +37,24 @@ public class TitleScreen : MonoBehaviour {
 
 	public void StartGame()
 	{
-	    Application.LoadLevelAsync("Scene1");
+	    //Application.LoadLevelAsync("Scene1");
+        SceneManager.LoadSceneAsync("Scene1");
 	}
 
 	public void StartPrologue()
 	{
-	    Application.LoadLevelAsync("Prologue");
+	    //Application.LoadLevelAsync("Prologue");
+        SceneManager.LoadSceneAsync("Prologue");
 	}
 
 	public void StartMenu()
 	{
-        //GameObject.FindGameObjectWithTag("Credits").SetActive(false);
-        //GameObject.FindGameObjectWithTag("Title").SetActive(true);
         credits.SetActive(false);
         title.SetActive(true);
 	}
 
 	public void StartCredits()
 	{
-        //GameObject.FindGameObjectWithTag("Credits").SetActive(true);
-        //GameObject.FindGameObjectWithTag("Title").SetActive(false);
         credits.SetActive(true);
         title.SetActive(false);
     }
