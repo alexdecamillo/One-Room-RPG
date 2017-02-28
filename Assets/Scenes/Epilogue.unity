@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 805740878}
   - component: {fileID: 805740877}
   m_Layer: 0
-  m_Name: TitleMusic
+  m_Name: VictoryMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
