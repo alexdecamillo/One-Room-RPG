@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935023252209914}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.59, y: 0.11, z: 3.3}
+  m_LocalPosition: {x: -3.09, y: 0.11, z: 2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4248551386445658}
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c74af7a0320ffd4fb925f9def20e561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
   bomb: {fileID: 1060933244913978, guid: e868eca6e74242c4a8439994b637e2b6, type: 2}
 --- !u!114 &114538007555759926
 MonoBehaviour:
@@ -188,16 +189,21 @@ MonoBehaviour:
   swingTimer: 0.27
   swingCD: 0.1
   activeBed: {fileID: 0}
+  healthHUD: {fileID: 0}
+  bombHud: {fileID: 0}
+  chestInfo: {fileID: 0}
   potionStrength: 10
   moveSpeed: 2
   paused: 0
   points: 0
-  potionCount: 10
+  potionCount: 1
   bombCount: 1
+  chestPotionCount: 0
+  chestBombCount: 0
   Shop: {fileID: 0}
+  Chest: {fileID: 0}
   plane: {fileID: 0}
   cycle: {fileID: 0}
-  healthHUD: {fileID: 0}
   healthBar: {fileID: 0}
 --- !u!212 &212371867968344934
 SpriteRenderer:

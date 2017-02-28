@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 805740878}
   - component: {fileID: 805740877}
   m_Layer: 0
-  m_Name: TitleMusic
+  m_Name: VictoryMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 124c8b4db34f90842ae688a7eb714d03, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ad8f12de58bbc304e8cce7c4e1b3220e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

@@ -24,12 +24,13 @@ public class LivingEntity : MonoBehaviour, iDamagable {
 		health -= damage;
 
 		if(player !=null){
-		if (gameObject.name == "Player") {
-			if (TookDamage != null) {
-				TookDamage ();
-			}
-		}
-}
+		    if (gameObject.name == "Player") {
+			    if (TookDamage != null) {
+				    TookDamage ();
+			    }
+		    }
+        }
+
 		if (health <= 0 && !dead) {
 			Die();
 			FindObjectOfType<Player> ().AddPoints (value);

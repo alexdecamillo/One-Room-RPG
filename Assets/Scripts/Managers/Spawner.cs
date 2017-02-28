@@ -58,6 +58,7 @@ public class Spawner : MonoBehaviour {
 
                 Enemy spawnedEnemy = Instantiate(spawn, spawnPoint.position, Quaternion.Euler(90, 0, 0)) as Enemy;
                 spawnedEnemy.OnDeath += OnEnemyDeath;
+                spawnedEnemy.health += (2 * currentWaveNumber);
                 shouldAnim = true;
             }
         }
