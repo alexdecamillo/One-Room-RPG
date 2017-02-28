@@ -31,10 +31,9 @@ public class WeaponButton : MonoBehaviour
             {
                 player.points -= bombPrice;
                 ++player.bombCount;
-                Debug.Log("bought a bomb");
             }
             else if (player.bombCount >= 4)
-                warning.text = ("You can't hold any more! Store some in your chest.");
+                warning.text = ("You can't hold any more! Store in chest.");
         }
         else
             warning.text = ("Not enough points!");
@@ -48,10 +47,9 @@ public class WeaponButton : MonoBehaviour
             {
                 player.points -= potionPrice;
                 ++player.potionCount;
-                //Debug.Log("bought a bomb");
             }
             else if (player.bombCount >= 4)
-                warning.text = ("You can't hold any more! Store some in your chest.");
+                warning.text = ("You can't hold any more! Store in chest.");
         }
         else
             warning.text = ("Not enough points!");
@@ -99,7 +97,7 @@ public class WeaponButton : MonoBehaviour
             --player.bombCount;
         }
         else
-            warning.text = ("Not enough bombs!");
+            warning.text = ("You have no bombs!");
     }
 
     public void TakeBomb()
@@ -123,7 +121,7 @@ public class WeaponButton : MonoBehaviour
             --player.potionCount;
         }
         else
-            warning.text = ("Not enough potions!");
+            warning.text = ("You have no potions!");
     }
 
     public void TakePotion()

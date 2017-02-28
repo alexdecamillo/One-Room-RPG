@@ -13,7 +13,7 @@ public class SpawnManager : MonoBehaviour {
 
 	int startingRound = 0;
 	int round;
-	int totalRounds = 2;
+	int totalRounds = 7;
 	int walkEnemies = 3;
 
 	Round[] walk;
@@ -128,6 +128,11 @@ public class SpawnManager : MonoBehaviour {
 	public int GetRoundNum() {
 		return round + 1;
 	}
+
+    public int GetMaxRound()
+    {
+        return totalRounds;
+    }
 
 	public bool GetRoundComplete() {
 		return roundComplete;

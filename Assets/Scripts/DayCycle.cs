@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DayCycle : MonoBehaviour {
 
+    public string time = "Day";
+
     public Sprite day;
     public Sprite night;
     public AudioClip fighting;
@@ -23,6 +25,7 @@ public class DayCycle : MonoBehaviour {
         flash.SetActive(false);
         audio.clip = dayMusic;
         audio.Play();
+        time = "Day";
     }
 
     public void SetNight()
@@ -32,5 +35,6 @@ public class DayCycle : MonoBehaviour {
         flash.SetActive(true);
         audio.clip = fighting;
         audio.Play();
+        time = "Night";
     }
 }

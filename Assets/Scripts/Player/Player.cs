@@ -109,12 +109,14 @@ public class Player : LivingEntity {
             if (crossChestBoundary && !inChest && Input.GetKeyDown(KeyCode.E)) {
                 inChest = true;
                 Chest.enabled = true;
+                Time.timeScale = 0;
                 Debug.Log("Shop pressed");
             }
             else if (inChest && Input.GetKeyDown(KeyCode.E))
             {
                 Chest.enabled = false;
                 inChest = false;
+                Time.timeScale = 1;
             }
 
             // handle sword and player direction
@@ -202,7 +204,7 @@ public class Player : LivingEntity {
 			activeBed.text = ("Press E to shop.");
 			crossShopBoundary = true;
 		}
-		if ((col.tag == "Chest") && spawner.dayCycle && !inChest)
+		if ((col.tag == "Chest") && !inChest)
         {
 			activeBed.text = ("Press E to view chest.");
 			crossChestBoundary = true;

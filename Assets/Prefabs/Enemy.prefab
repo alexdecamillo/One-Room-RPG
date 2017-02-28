@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 10
   maxHealth: 0
-  value: 10
+  value: 15
   health: 0
   speed: 0.5
   damage: 8

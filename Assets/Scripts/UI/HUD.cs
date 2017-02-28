@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
 
-	int round;
 	Text[] displayText;
 
 	SpawnManager spawner;
@@ -23,11 +22,12 @@ public class HUD : MonoBehaviour {
 	void Update()
 	{
 		UpdateScore();
+        UpdateRound();
 	}
 
 	void UpdateRound() {
-		round = spawner.GetRoundNum();
-		//displayText[1].text = "Round: " + round;
+		displayText[1].text = FindObjectOfType<DayCycle>().time + " " + 
+            spawner.GetRoundNum() + "/" + spawner.GetMaxRound();
 	}
 
 	void UpdatePlayerHealth() {

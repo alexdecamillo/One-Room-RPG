@@ -8,15 +8,18 @@ public class PauseMenu : MonoBehaviour {
 	bool paused;
 	Player player;
 	Sword sword;
+
 	public Text stats;
-	public GameObject panel;
+    public GameObject stat;
+    public GameObject pause;
+    public GameObject panel;
 
 	void Start () {
 		player = FindObjectOfType<Player>();
 		sword = FindObjectOfType<Sword>();
 		player.OnPause += Pause;
 		gameObject.SetActive(false);
-		panel.SetActive(false);		
+		panel.SetActive(false);
 	}
 
 	void Update()
@@ -43,7 +46,10 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	public void Clear() {
-		gameObject.SetActive(false);
+        panel.SetActive(false);
+        stat.SetActive(true);
+        pause.SetActive(true);
+        gameObject.SetActive(false);
 	}
 
 	public void Settings() {
@@ -53,13 +59,17 @@ public class PauseMenu : MonoBehaviour {
 	public void Controls()
 	{
 		if(panel.activeSelf)
-		{
-			panel.SetActive(false);	
+        {
+            stat.SetActive(true);
+            pause.SetActive(true);
+            panel.SetActive(false);
 		}
-		if(panel.activeSelf  == false)
+		else if(!panel.activeSelf)
 		{
-		//panel.SetActive(true);
-	}
+            stat.SetActive(false);
+            pause.SetActive(false);
+		    panel.SetActive(true);
+	    }
 
 	}
 	public void RestartGame()
@@ -71,7 +81,8 @@ public class PauseMenu : MonoBehaviour {
 	public void EndGame() {
 		//Resume();
 		//player.TakeDamage(float.MaxValue);
-		Application.LoadLevelAsync("Title Screen");
+		//Application.LoadLevelAsync("Title Screen");
+        SceneManager.LoadSceneAsync("Title Screen");
 	}
 
 }

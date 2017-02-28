@@ -317,7 +317,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3afa6ff25dee0f74a80e445da04f21e0, type: 3}
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
     he cannot change the past, he has prevented another civilization from being totally
     destroyed.\n\nThis fight isn't over. The Hyrulks will never give up, and he will
     fight until the end of his days to stop them any chance he gets.\n\n\nThanks for
-    playing!\n\nfin"
+    playing!\n\nPRESS E"
 --- !u!222 &704632317
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -40,6 +40,10 @@ public class LivingEntity : MonoBehaviour, iDamagable {
 	[ContextMenu("Self Destuct")]
 	protected void Die() {
 		dead = true;
+        if (gameObject.CompareTag("Player"))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Scene1");
+        }
 		if(OnDeath != null) {
 			OnDeath();
 		}
