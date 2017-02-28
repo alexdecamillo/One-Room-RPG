@@ -10,6 +10,7 @@ public class LayBombs : MonoBehaviour
     //public AudioClip bombsAway;       // Sound for when the player lays a bomb.
 	public GameObject bomb;             // Prefab of the bomb.
 	SpawnManager spawnManager;
+	Player player; 
 
 	float bombTimer;                    // Time between dropped bombs
     bool bombReady = true;
@@ -17,6 +18,7 @@ public class LayBombs : MonoBehaviour
 	void Start ()
 	{
 		spawnManager = FindObjectOfType<SpawnManager>();
+		player = FindObjectOfType<Player>();
 	}
 
 	void Update ()
@@ -33,9 +35,10 @@ public class LayBombs : MonoBehaviour
 
 	public void OnClickThing()
 	{
-		if(bombReady)
+		if(bombReady && player.bombCount > 0)
 		{
 				LayBomb();
+				--player.bombCount;
 		}
 	}
 	

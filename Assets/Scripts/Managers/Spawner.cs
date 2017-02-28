@@ -73,7 +73,7 @@ public class Spawner : MonoBehaviour {
 
 	void OnEnemyDeath() {
 		enemiesRemainingAlive--;
-		Debug.Log("Enemy was killed");
+		//Debug.Log("Enemy was killed");
 		if (enemiesRemainingAlive == 0 && currentWaveNumber >= waves.Length) {
 			Debug.Log("Spawner round ended");
 			manager.RoundEnd();

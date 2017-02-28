@@ -641,7 +641,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989636515368384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27056e76e946074187433a02ed9374b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aaee4ad725129b45aec69317cd09c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   setKnight: 0

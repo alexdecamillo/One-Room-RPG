@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Bomb : MonoBehaviour {
 
     public float damage;
-    private float explodeBomb;
+    public float explodeBomb;
     public float explosionTime = 0.2f;
 
+    public AudioClip clip;
+    AudioSource bombSound;
     Animator anim;
 
     void Start () {
         explodeBomb = 2.0f;
         anim = GetComponent<Animator>();
         Destroy(gameObject, explodeBomb);
+        bombSound = GetComponent<AudioSource>();
 	}
     
 	void Update () {
@@ -22,7 +26,10 @@ public class Bomb : MonoBehaviour {
         if (explodeBomb <= 0.15f)
         {
             anim.SetBool("Explode", true);
-            // Sound for exploding
+            if(!bombSound.isPlaying)
+ {
+            bombSound.PlayOneShot(clip, .7f);
+        }
             GetComponent<SphereCollider>().enabled = true;
         }
     }

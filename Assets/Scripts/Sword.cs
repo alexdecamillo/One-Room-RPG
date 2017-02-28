@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Sword : MonoBehaviour {
 
     public event System.Action swingUpdate;
@@ -10,6 +11,7 @@ public class Sword : MonoBehaviour {
 
 	public float damage;
 
+	AudioSource hit;
 	public float swingCD;
 	float swingTimer;
 
@@ -18,6 +20,7 @@ public class Sword : MonoBehaviour {
 	void Start () {
 		hitBox = GetComponent<BoxCollider>();
 		hitBox.enabled = false;
+		hit = GetComponent<AudioSource>();
 	}
 
 	void Update() {
@@ -45,6 +48,7 @@ public class Sword : MonoBehaviour {
 			Debug.Log ("Attacking enemy");
 			col.SendMessage ("TakeDamage", damage);
 			col.SendMessage ("Knockback");
+			hit.Play();
 		}
 	}
 

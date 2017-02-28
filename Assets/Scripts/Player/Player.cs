@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(AudioSource))]
 public class Player : LivingEntity {
 
 	bool attacking = false;
@@ -36,6 +37,7 @@ public class Player : LivingEntity {
 	Player player;	
 	Animator anim;
 	SpawnManager spawner;
+	AudioSource potionDrink;
 
 	public Canvas Shop;
 	public Canvas Chest;
@@ -56,6 +58,7 @@ public class Player : LivingEntity {
 		anim = GetComponent<Animator> ();
 		spawner = FindObjectOfType<SpawnManager>();
 		sword = GetComponentInChildren <Sword> ();
+		potionDrink = GetComponent<AudioSource>();
 	}
 
     // Update is called once per frame
@@ -184,6 +187,7 @@ public class Player : LivingEntity {
         {
             health += potionStrength;
             --potionCount;
+            potionDrink.Play();
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]
 public class Enemy : LivingEntity {
 
@@ -28,6 +29,7 @@ public class Enemy : LivingEntity {
 	LivingEntity targetEntity;
 	Transform target;
 
+    AudioSource hitPlayer;
     Animator anim;
 
 	public virtual void Start(){
@@ -36,6 +38,7 @@ public class Enemy : LivingEntity {
         target = targetEntity.transform;
         anim = GetComponent<Animator>();
         attDist = Mathf.Pow (attackDistanceThreshold, 2);
+        hitPlayer = GetComponent<AudioSource>();
         Physics.IgnoreCollision(FindObjectOfType<Player>().GetComponent<BoxCollider>(), GetComponent<BoxCollider>());
     }
 
@@ -76,6 +79,7 @@ public class Enemy : LivingEntity {
                 anim.SetBool("attacking", true);
                 nextAttackTime = Time.time + timeBetweenAttacks;
                 targetEntity.TakeDamage(damage);
+                hitPlayer.Play();
                 //StartCoroutine(Attack()); 
             }
             else

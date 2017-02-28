@@ -624,7 +624,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: First Last
+  m_Text: Justin Rettberg
 --- !u!222 &660211206
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1061,7 +1061,6 @@ GameObject:
   - component: {fileID: 1377039671}
   - component: {fileID: 1377039670}
   - component: {fileID: 1377039674}
-  - component: {fileID: 1377039675}
   m_Layer: 5
   m_Name: TitleScreen
   m_TagString: Title
@@ -1709,7 +1708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Khulna Kinel
+  m_Text: 'Kyle Conel
 
     Alex DeCamillo'
 --- !u!222 &1751146099
