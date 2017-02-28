@@ -6,9 +6,9 @@ namespace CompleteProject
 {
 	public class WeaponButton : MonoBehaviour {
 
-		public int bombPrice = 50;
-		public int statUpgradePrice = 0;
-		public int potionPrice = 0;
+		public int bombPrice;
+		public int statUpgradePrice;
+		public int potionPrice;
 
 		public Text warning;
 
@@ -27,28 +27,45 @@ namespace CompleteProject
 
 		public void BuyBomb()
 		{
-			if (player.points >= bombPrice) {
+			if (player.points >= bombPrice && player.bombCount < 4) {
+				if(player.bombCount <4)
+				{
+					player.points -= bombPrice;
+					++player.bombCount;
+					Debug.Log("bought a bomb");
+				}
+				else if(player.bombCount >= 4)
+				{
+					warning.text = ("You can't hold any more! Store some in your chest.");
+				}
 
-				player.points -= bombPrice;
-				++player.bombCount;
-				Debug.Log("bought a bomb");
-			} /*else 
+			} 
+			else 
 			{
-				//warning.text = ("Not enough points!");
-			}*/
+				warning.text = ("Not enough points!");
+			}
 		}
 
 		public void BuyPotion()
 		{
-			if (player.points >= potionPrice) {
-
-				player.points -= potionPrice;
-				++player.potionCount;
-				//Debug.Log("bought a bomb");
-			} /*else 
+			if (player.points >= potionPrice) 
 			{
-				//warning.text = ("Not enough points!");
-			}*/
+
+				if (player.points >= bombPrice && player.potionCount < 4) 
+				{
+					player.points -= potionPrice;
+					++player.potionCount;
+					//Debug.Log("bought a bomb");
+				}
+				else if(player.bombCount >= 4)
+				{
+					warning.text = ("You can't hold any more! Store some in your chest.");
+				}
+			} 
+			else 
+			{
+				warning.text = ("Not enough points!");
+			}
 		}
 
 		public void BuyMaxHealth()
@@ -58,10 +75,11 @@ namespace CompleteProject
 				player.points -= statUpgradePrice;
 				player.maxHealth += 10;
 				player.healthBar.maxValue += 10;
-			}/* else 
+			} 
+			else 
 			{
-				//warning.text = ("Not enough points!");
-			}*/
+				warning.text = ("Not enough points!");
+			}
 		}
 
 		public void BuyMoveSpeed()
@@ -70,10 +88,11 @@ namespace CompleteProject
 
 				player.points -= statUpgradePrice;
 				++player.moveSpeed;
-			}/* else 
+			}
+			 else 
 			{
-				//warning.text = ("Not enough points!");
-			}*/
+				warning.text = ("Not enough points!");
+			}
 		}
 
 		public void BuyAttackPower()
@@ -82,12 +101,70 @@ namespace CompleteProject
 
 				player.points -= statUpgradePrice;
 				++sword.damage;
-			}/* else 
+			}
+			 else 
 			{
-				//warning.text = ("Not enough points!");
-			}*/
+				warning.text = ("Not enough points!");
+			}
 		}
 		
+	public void StoreBomb()
+		{
+			if (player.bombCount > 0) 
+			{
+					
+					++player.chestBombCount;
+					--player.bombCount;
+			} 
+			else 
+			{
+				warning.text = ("Not enough bombs!");
+			}
+		}
+
+		public void TakeBomb()
+		{
+			if (player.bombCount < 4) 
+			{
+					
+					--player.chestBombCount;
+					++player.bombCount;
+			} 
+			else 
+			{
+				warning.text = ("You have too many bombs!");
+			}
+		}
+
+		public void StorePotion()
+		{
+			if (player.potionCount > 0) 
+			{
+					
+					++player.chestPotionCount;
+					--player.potionCount;
+			} 
+			else 
+			{
+				warning.text = ("Not enough potions!");
+			}
+		}
+
+		public void TakePotion()
+		{
+			if (player.potionCount < 4) 
+			{
+					
+					--player.chestPotionCount;
+					++player.potionCount;
+			} 
+			else 
+			{
+				warning.text = ("You have too many potions!");
+			}
+		}
+	
+
 	}
 
 }

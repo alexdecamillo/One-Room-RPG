@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class LayBombs : MonoBehaviour
 {
+
+	public bool x;
 	[HideInInspector]
     //public AudioClip bombsAway;       // Sound for when the player lays a bomb.
 	public GameObject bomb;             // Prefab of the bomb.
@@ -29,6 +31,15 @@ public class LayBombs : MonoBehaviour
             bombReady = true;
 	}
 
+	public void OnClickThing()
+	{
+		if(bombReady)
+		{
+				LayBomb();
+		}
+	}
+	
+
 	public bool LayBomb()
 	{
 		if(bombReady /*&& !spawnManager.dayCycle*/)
@@ -39,6 +50,9 @@ public class LayBombs : MonoBehaviour
             return true;
 		}
         return false;
+        
     }
+
+
 
 }

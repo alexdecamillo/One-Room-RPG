@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class SpawnManager : MonoBehaviour {
 
 	int startingRound = 0;
 	int round;
-	int totalRounds = 25;
+	int totalRounds = 2;
 	int walkEnemies = 3;
 
 	Round[] walk;
@@ -34,6 +35,10 @@ public class SpawnManager : MonoBehaviour {
         {
 			roundComplete = false;
 			waveSet = false;
+		}
+		if(round == totalRounds)
+		{
+			SceneManager.LoadSceneAsync("Epilogue");
 		}
 	}
 
@@ -111,8 +116,8 @@ public class SpawnManager : MonoBehaviour {
 
 
 	public void RoundEnd() {
-		Debug.Log("RoundEnd function");
-		Debug.Log("RoundComplete function");
+		//Debug.Log("RoundEnd function");
+		//Debug.Log("RoundComplete function");
 		round++;
 		roundComplete = true;
 		dayCycle = true;

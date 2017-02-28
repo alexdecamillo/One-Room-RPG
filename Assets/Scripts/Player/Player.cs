@@ -11,17 +11,24 @@ public class Player : LivingEntity {
 	public float swingTimer;
 	public float swingCD;
 	public Text activeBed;
+	public Text healthHUD;
+	public Text bombHud;
 
 	public float potionStrength = 10f;
 	public float moveSpeed;
 	public bool paused;
 	bool crossBoundary = false;
 	bool crossShopBoundary = false;
+	bool crossChestBoundary = false;
 	bool inShop = false;
+	bool inChest = false;
+
 	public int points = 0;
 	int direction = 0;
 	public int potionCount = 0;
-    public int bombCount = 1;
+    public int bombCount = 0;
+    public int chestPotionCount = 0;
+    public int chestBombCount = 0;
 
 	Sword sword;
 	PlayerController controller;
@@ -30,9 +37,10 @@ public class Player : LivingEntity {
 	SpawnManager spawner;
 
 	public Canvas Shop;
+	public Canvas Chest;
 	public GameObject plane;
 	public GameObject cycle;
-	public Text healthHUD; 
+	 
 	public Slider healthBar;
 
 	public event System.Action OnPause;
@@ -42,6 +50,7 @@ public class Player : LivingEntity {
 	public virtual void Start () {
 		base.Start();
 		Shop.enabled = false;
+		Chest.enabled = false;
 		controller = GetComponent<PlayerController>();
 		anim = GetComponent<Animator> ();
 		spawner = FindObjectOfType<SpawnManager>();
@@ -88,6 +97,22 @@ public class Player : LivingEntity {
                 inShop = false;
             }
 
+            if (inChest && !crossChestBoundary)
+            {
+                Chest.enabled = false;
+            }
+
+            if (crossChestBoundary && !inChest && Input.GetKeyDown(KeyCode.E)) {
+                inChest = true;
+                Chest.enabled = true;
+                Debug.Log("Shop pressed");
+            }
+            else if (inChest && Input.GetKeyDown(KeyCode.E))
+            {
+                Chest.enabled = false;
+                inChest = false;
+            }
+
             // handle sword and player direction
             if (moveInput.z < 0)        // foward
             {
@@ -132,8 +157,9 @@ public class Player : LivingEntity {
 		}
 
 		healthHUD.text = potionCount + "";
-		healthBar.value = health;
+		bombHud.text = bombCount + "";
 		healthBar.maxValue = maxHealth;
+		healthBar.value = health;
 	}
 
 	public void AddPoints(int points) {
@@ -162,13 +188,18 @@ public class Player : LivingEntity {
 	void OnTriggerEnter(Collider col) {
 		if ((col.tag == "Bed") && spawner.dayCycle)
         {
-			activeBed.text = ("Press E to go to sleep");
+			activeBed.text = ("Press E to go to sleep.");
 			crossBoundary = true;
 		}
 		if ((col.tag == "Shop") && spawner.dayCycle && !inShop)
         {
-			activeBed.text = ("Press E to shop");
+			activeBed.text = ("Press E to shop.");
 			crossShopBoundary = true;
+		}
+		if ((col.tag == "Chest") && spawner.dayCycle && !inChest)
+        {
+			activeBed.text = ("Press E to view chest.");
+			crossChestBoundary = true;
 		}
 	}
 
@@ -182,6 +213,11 @@ public class Player : LivingEntity {
         {
 			activeBed.text = ("");
 			crossShopBoundary = false;
+		}
+		if (col.tag == "Chest")
+        {
+			activeBed.text = ("");
+			crossChestBoundary = false;
 		}
 	}
 

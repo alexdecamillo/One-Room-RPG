@@ -20,6 +20,11 @@ public class HUD : MonoBehaviour {
 		displayText = GetComponentsInChildren<Text>();
 	}
 
+	void Update()
+	{
+		UpdateScore();
+	}
+
 	void UpdateRound() {
 		round = spawner.GetRoundNum();
 		//displayText[1].text = "Round: " + round;
