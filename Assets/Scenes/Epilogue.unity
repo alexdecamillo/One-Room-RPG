@@ -328,25 +328,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.3
-  m_Text: "In an alternate universe, the physical beings of humans are fluid and able
-    to access many environments that are called \"adjacent realities.\" \r\n\nTo you
-    and I, the most prominent are dreams. \r\n\r\nJames, a young boy 12 years of age,
-    has been having terrible nightmares. No big deal right? He'll get over it? \n\nNot
-    in dimension 23. \n\nIn this \rreality, nightmares only occur every hundred or
-    so years. For when nightmares grow too strong, the evil manifests itself into
-    Hyrulks. These\r beasts are considered the toughest parasite across any dimension.
-    They come out at dark to wreak havoc and grow their army. If they are not stopped,
-    it will be the end of the planet Traiuna. \n\nThe people of the Hunki Empire,
-    the most powerful empire in the world,\r turn to their emperor's army for aid.
-    Alas, the humans are extremely weak while fighting in the DreamScape. Many are
-    pummeled almost immediately. \r\n\nDays have gone by with countless lives taken,
-    and the Hyrulks are only growing stronger as time passes. Out of nowhere, a brave
-    soldier \rappears from seemingly nowhere. \n\nKy, from dimension 0, thought to
-    be utterly taken over and demolished by the Hyrulks, appears. He is determined
-    to\r save planet Traiuna from utter destruction, for he could not do the same
-    for his own home. \n\nHe must enter James's dreamscape in order to spare James,\r\nand
-    this entire world, all while in the confines of a night at a time. When it is
-    light, the Hyrulks rest, and grow stronger.\n\nPress E to continue."
+  m_Text: "He did it. \n\nHe can't believe it. \n\nKy has regained his honor. Although
+    he cannot change the past, he has prevented another civilization from being totally
+    destroyed.\n\nThis fight isn't over. The Hyrulks will never give up, and he will
+    fight until the end of his days to stop them any chance he gets.\n\n\nThanks for
+    playing!\n\nfin"
 --- !u!222 &704632317
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -378,7 +364,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 124c8b4db34f90842ae688a7eb714d03, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ad8f12de58bbc304e8cce7c4e1b3220e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

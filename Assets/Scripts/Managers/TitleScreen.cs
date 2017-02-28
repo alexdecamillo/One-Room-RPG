@@ -23,6 +23,10 @@ public class TitleScreen : MonoBehaviour {
 		{
 			StartGame();
 		}
+		if (Input.GetKeyDown(KeyCode.E) && (sceneName == "Epilogue"))
+		{
+			SceneManager.LoadSceneAsync("Title Screen");
+		}
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
