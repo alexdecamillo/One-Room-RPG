@@ -243,11 +243,11 @@ RectTransform:
   m_Father: {fileID: 377743607}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -1, y: -7.700012}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &40278688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -270,17 +270,17 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Hello
 --- !u!222 &40278689
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -679,6 +679,11 @@ Prefab:
       propertyPath: Chest
       value: 
       objectReference: {fileID: 377743606}
+    - target: {fileID: 114885430636202510, guid: 92a08f142338b5f4193cc13b67b12dcd,
+        type: 2}
+      propertyPath: chestInfo
+      value: 
+      objectReference: {fileID: 1511978008}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92a08f142338b5f4193cc13b67b12dcd, type: 2}
   m_IsPrefabParent: 0
@@ -1528,7 +1533,7 @@ MonoBehaviour:
   bombPrice: 10
   statUpgradePrice: 0
   potionPrice: 0
-  warning: {fileID: 0}
+  warning: {fileID: 40278688}
 --- !u!114 &377743604
 MonoBehaviour:
   m_ObjectHideFlags: 0

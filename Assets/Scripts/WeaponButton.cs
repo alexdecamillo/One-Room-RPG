@@ -124,15 +124,19 @@ namespace CompleteProject
 
 		public void TakeBomb()
 		{
-			if (player.bombCount < 4) 
+			if (player.bombCount < 3 && player.chestBombCount > 0) 
 			{
 					
 					--player.chestBombCount;
 					++player.bombCount;
 			} 
-			else 
+			else if(player.bombCount == 3)
 			{
 				warning.text = ("You have too many bombs!");
+			}
+			else if (player.chestBombCount < 1 )
+			{
+				warning.text = ("No bombs in here!");
 			}
 		}
 
@@ -152,15 +156,19 @@ namespace CompleteProject
 
 		public void TakePotion()
 		{
-			if (player.potionCount < 4) 
+			if (player.potionCount < 3 && player.chestPotionCount > 0) 
 			{
 					
 					--player.chestPotionCount;
 					++player.potionCount;
 			} 
-			else 
+			else if (player.potionCount == 3)
 			{
 				warning.text = ("You have too many potions!");
+			}
+			else if (player.chestPotionCount < 1 )
+			{
+				warning.text = ("No potions in here!");
 			}
 		}
 	

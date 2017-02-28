@@ -13,6 +13,7 @@ public class Player : LivingEntity {
 	public Text activeBed;
 	public Text healthHUD;
 	public Text bombHud;
+	public Text chestInfo;
 
 	public float potionStrength = 10f;
 	public float moveSpeed;
@@ -156,6 +157,7 @@ public class Player : LivingEntity {
 				OnPause();
 		}
 
+		chestInfo.text = "Bombs: " + chestBombCount + " Potions: " + chestPotionCount;
 		healthHUD.text = potionCount + "";
 		bombHud.text = bombCount + "";
 		healthBar.maxValue = maxHealth;
